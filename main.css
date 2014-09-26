@@ -1,0 +1,50 @@
+header {
+	max-width: 100%;
+	background: orange;
+	width: 100%;
+	float: left;
+}
+
+header * {
+	margin: 1%;
+}
+
+#logo {
+	max-width: 13%;
+	width: 100%;
+	float: left;
+}
+
+#news {
+	max-width: 83%;
+	width: 100%;
+}
+
+main {
+	max-width: 100%;
+	width: 100%;
+	background: steelblue;
+	float: left;
+}
+
+main * {
+	margin: 1%;
+}
+
+nav, aside {
+	max-width: 13%;
+	width: 100%;
+	float: left;
+}
+
+#content {
+	max-width: 68%;
+	width: 100%;
+	float: left;
+}
+
+#location {
+	margin: 10px 0px 10px;
+}
+
+
