@@ -1,4 +1,4 @@
-/db_dump/*.sh
+/db_dump/config.sh
 #*
 *$
 *.BAK

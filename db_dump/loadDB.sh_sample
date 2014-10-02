@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/d/XAMPP/mysql/bin/mysql -uroot web_prog < web_prog.sql
