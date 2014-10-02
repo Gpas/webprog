@@ -61,7 +61,7 @@ CREATE TABLE `test_neu` (
 
 LOCK TABLES `test_neu` WRITE;
 /*!40000 ALTER TABLE `test_neu` DISABLE KEYS */;
-INSERT INTO `test_neu` VALUES ('Grüter','Pascal','Hasenberg 35','BFH Informatik'),('Grüter','Pascal','Hasenberg 35','BFH Informatik');
+INSERT INTO `test_neu` VALUES ('Grüter','Pascal','Hasenberg 35','BFH Informatik'),('Grüter','Pascal','Hasenberg 35','BFH Informatik'),('HALKSHLKj','asojf','lkllklk 74','AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
 /*!40000 ALTER TABLE `test_neu` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -74,4 +74,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-02 11:31:18
+-- Dump completed on 2014-10-02 11:49:42
