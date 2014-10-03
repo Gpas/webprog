@@ -1,50 +1,47 @@
-header {
-	max-width: 100%;
-	background: orange;
-	width: 100%;
-	float: left;
-}
-
-header * {
-	margin: 1%;
-}
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
 #logo {
-	max-width: 13%;
-	width: 100%;
 	float: left;
+	background: orange;
 }
 
-#news {
-	max-width: 83%;
-	width: 100%;
+#slider {
+	float: right;
+	background: blue;
 }
 
 main {
-	max-width: 100%;
-	width: 100%;
-	background: steelblue;
-	float: left;
+	clear: both;
+	border: 0px solid;
 }
 
-main * {
-	margin: 1%;
+nav {
+	float: left;
+	background: green;
+	min-width: 15%;
 }
 
-nav, aside {
-	max-width: 13%;
-	width: 100%;
-	float: left;
+aside {
+	float: right;
+	background: orange;
+	min-width: 15%;
+}
+
+article {
+	margin: 0 15%;
 }
 
 #content {
-	max-width: 68%;
-	width: 100%;
-	float: left;
+	background: red;
 }
 
 #location {
-	margin: 10px 0px 10px;
+	background: blue;
 }
 
+footer {
+	clear: both;
+	background: black;
+}
 
