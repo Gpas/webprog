@@ -7,9 +7,11 @@ header {
 }
 
 #logo {
-	float: left;
+	display: block;
 	background: orange;
 	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /*#slider {
@@ -20,7 +22,7 @@ header {
 
 main {
 	clear: both;
-	border: 0px solid;
+	margin: 25px;
 }
 
 nav {
@@ -31,7 +33,7 @@ nav {
 
 aside {
 	float: right;
-	background: orange;
+	background: lightgray;
 	min-width: 15%;
 }
 
@@ -40,16 +42,17 @@ article {
 }
 
 #content {
-	background: red;
+	background: steelblue;
 }
 
 #location {
-	background: blue;
+	background: tomato;
 }
 
 footer {
 	clear: both;
-	background: black;
+	background: darkgray;
+	margin-top: 200px;
 }
 
 nav a, aside a {
@@ -62,9 +65,9 @@ nav a, aside a {
  * */
 
 #slider {
-  	margin: 10px 2%;
-  	width: 80%;
-  	height: 300px;
+  	margin: 10px auto;
+  	width: 92%;
+  	height: 250px;
 	border:1px solid;
 	padding: 10px;
 	position: relative;
@@ -77,8 +80,8 @@ nav a, aside a {
  	height: -webkit-calc(100% - 20px);
  	width: -moz-calc(100% - 20px);
  	height: -moz-calc(100% - 20px);
-  	-moz-animation: round 24s infinite;
-  	-webkit-animation: round 24s infinite;
+  	-moz-animation: round 18s infinite;
+  	-webkit-animation: round 18s infinite;
   	opacity: 0;  
 }
 
@@ -96,12 +99,11 @@ nav a, aside a {
   	40%{opacity: 0;}
 } 
 
-img:nth-child(4){-moz-animation-delay:0s;}
-img:nth-child(3){-moz-animation-delay:6s;}
-img:nth-child(2){-moz-animation-delay:12s;}
-img:nth-child(1){-moz-animation-delay:18s;}
+
+img:nth-child(3){-moz-animation-delay:0s;}
+img:nth-child(2){-moz-animation-delay:6s;}
+img:nth-child(1){-moz-animation-delay:12s;}
 /* Chrome, Safari, Opera */
-img:nth-child(4){-webkit-animation-delay:0s;}
-img:nth-child(3){-webkit-animation-delay:6s;}
-img:nth-child(2){-webkit-animation-delay:12s;}
-img:nth-child(1){-webkit-animation-delay:18s;}
+img:nth-child(3){-webkit-animation-delay:0s;}
+img:nth-child(2){-webkit-animation-delay:6s;}
+img:nth-child(1){-webkit-animation-delay:12s;}

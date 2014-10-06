@@ -10,10 +10,9 @@
 			<img id="logo" src="../resource/logo.jpg" />
 			<div id="slider">
 				<div class="container">
-	  				<img class='photo'  src="http://farm9.staticflickr.com/8320/8035372009_7075c719d9.jpg" alt="" />
-	  				<img class='photo'  src="http://farm9.staticflickr.com/8517/8562729616_35b1384aa1.jpg" alt="" />
-	  				<img class='photo'  src="http://farm9.staticflickr.com/8465/8113424031_72048dd887.jpg" alt="" />
-	  				<img class='photo'  src="http://farm9.staticflickr.com/8241/8562523343_9bb49b7b7b.jpg" alt="" />
+	  				<img class='photo'  src="resource/pralinen.jpg" alt="" />
+	  				<img class='photo'  src="resource/schokolade_stapel.jpg" alt="" />
+	  				<img class='photo'  src="resource/schokoladen_bleche.jpg" alt="" />
   				</div>
 			</div>
 		</header>
@@ -30,12 +29,12 @@
 			    			'Kontakt'
 						);
 						$links= array(
-							'index.php',
-							'tafeln.html',
-							'pralinen.html',
-							'zutaten.html',
-							'zubehör.html',
-							'kontakt.html'
+							'/index.php',
+							'/pages/tafeln.php',
+							'/pages/Pralinen/pralinen.php',
+							'/zutaten.html',
+							'/zubehör.html',
+							'/kontakt.html'
 						);
 						for($i = 0; $i < count($pages); $i++ )
 						{
@@ -57,7 +56,12 @@
 			
 			<article>
 				<section id="location">
-					Location
+					<?php
+						$crumbs = explode("/",$_SERVER["REQUEST_URI"]);
+						foreach($crumbs as $crumb){
+    					echo ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
+						}
+					?>
 				</section>
 				<section id="content" >
 				    Content
