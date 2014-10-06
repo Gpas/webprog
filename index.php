@@ -8,7 +8,14 @@
 	<body>
 		<header>
 			<img id="logo" src="../resource/logo.jpg" />
-			<div id="slider">Slider</div>
+			<div id="slider">
+				<div class="container">
+	  				<img class='photo'  src="http://farm9.staticflickr.com/8320/8035372009_7075c719d9.jpg" alt="" />
+	  				<img class='photo'  src="http://farm9.staticflickr.com/8517/8562729616_35b1384aa1.jpg" alt="" />
+	  				<img class='photo'  src="http://farm9.staticflickr.com/8465/8113424031_72048dd887.jpg" alt="" />
+	  				<img class='photo'  src="http://farm9.staticflickr.com/8241/8562523343_9bb49b7b7b.jpg" alt="" />
+  				</div>
+			</div>
 		</header>
 		<main>
 			<nav>

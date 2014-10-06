@@ -3,21 +3,20 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 header {
 	width: 100%;
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 #logo {
 	float: left;
 	background: orange;
-	width: 15%;
+	width: 200px;
 }
 
-#slider {
-	float: left;
+/*#slider {
 	background: blue;
-	width: 81%;
+	width: 100%;
 	margin: 10px 2%;
-}
+}*/
 
 main {
 	clear: both;
@@ -57,3 +56,52 @@ nav a, aside a {
 	padding: 5px 5px 5px 15px;
 	display: block;
 }
+
+/* 
+ ****** Slider ******
+ * */
+
+#slider {
+  	margin: 10px 2%;
+  	width: 80%;
+  	height: 300px;
+	border:1px solid;
+	padding: 10px;
+	position: relative;
+	overflow: hidden;
+}
+
+.photo {
+	position: absolute;
+  	width: -webkit-calc(100% - 20px);
+ 	height: -webkit-calc(100% - 20px);
+ 	width: -moz-calc(100% - 20px);
+ 	height: -moz-calc(100% - 20px);
+  	-moz-animation: round 24s infinite;
+  	-webkit-animation: round 24s infinite;
+  	opacity: 0;  
+}
+
+@-moz-keyframes round{
+	10%{z-index: 10;}   
+	25%{opacity: 1;}
+	35%{z-index: 1;}
+	40%{opacity: 0;}
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes round{
+	10%{z-index: 10;}   
+ 	25%{opacity: 1;}
+  	35%{z-index: 1;}
+  	40%{opacity: 0;}
+} 
+
+img:nth-child(4){-moz-animation-delay:0s;}
+img:nth-child(3){-moz-animation-delay:6s;}
+img:nth-child(2){-moz-animation-delay:12s;}
+img:nth-child(1){-moz-animation-delay:18s;}
+/* Chrome, Safari, Opera */
+img:nth-child(4){-webkit-animation-delay:0s;}
+img:nth-child(3){-webkit-animation-delay:6s;}
+img:nth-child(2){-webkit-animation-delay:12s;}
+img:nth-child(1){-webkit-animation-delay:18s;}
