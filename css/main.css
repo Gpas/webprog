@@ -7,11 +7,11 @@ header {
 }
 
 #logo {
-	display: block;
 	width: 200px;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 35px;
+	margin-top: 50px;
 	float: left;
+	color: chocolate;
 }
 
 /*#slider {
@@ -71,10 +71,9 @@ nav a:hover, aside a:hover {
  * */
 
 #slider {
-	float: right;
-  	margin: 10px 10px;
-  	width: 70%;
-  	height: 150px;
+
+  	margin: 10px 25px;
+  	height: 180px;
 	border:1px solid;
 	padding: 10px;
 	position: relative;
