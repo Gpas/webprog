@@ -11,6 +11,7 @@ header {
 	width: 200px;
 	margin-left: auto;
 	margin-right: auto;
+	float: left;
 }
 
 /*#slider {
@@ -70,9 +71,10 @@ nav a:hover, aside a:hover {
  * */
 
 #slider {
-  	margin: 10px auto;
-  	width: 92%;
-  	height: 250px;
+	float: right;
+  	margin: 10px 10px;
+  	width: 70%;
+  	height: 150px;
 	border:1px solid;
 	padding: 10px;
 	position: relative;
