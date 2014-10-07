@@ -8,7 +8,6 @@ header {
 
 #logo {
 	display: block;
-	background: orange;
 	width: 200px;
 	margin-left: auto;
 	margin-right: auto;
@@ -58,6 +57,12 @@ footer {
 nav a, aside a {
 	padding: 5px 5px 5px 15px;
 	display: block;
+	text-decoration: none;
+}
+
+nav a:hover, aside a:hover {
+	font-weight: bold;
+	color: chocolate;
 }
 
 /* 

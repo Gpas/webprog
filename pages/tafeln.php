@@ -56,12 +56,12 @@
             
             <article>
                 <section id="location">
-                    <?php
-                        $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
-                        foreach($crumbs as $crumb){
-                        echo ucfirst(str_replace(array(".php","_"),array(""," "),$crumb) . ' ');
-                        }
-                    ?>
+					<?php
+						$crumbs = explode("/",$_SERVER["REQUEST_URI"]);
+						foreach($crumbs as $crumb){
+    					echo ucfirst(str_replace(array(".php","_","pages"),array(""," ",""),$crumb) . ' ');
+						}
+					?>
                 </section>
                 <section id="content" >
                     Content
