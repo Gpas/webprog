@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="/css/main.css" >
         <title>Schoggi Shop</title>
-        <?php include "../navigation.php"; ?>
+        <?php include $_SERVER['DOCUMENT_ROOT'].'/navigation.php'; ?>
     </head>
     <body>
         <header>
