@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="/css/main.css" >
         <title>Schoggi Shop</title>
+        <?php include "../navigation.php"; ?>
     </head>
     <body>
         <header>
@@ -19,38 +20,16 @@
         <main>
             <nav>
                 <ul>
-                    <?php
-                        $pages = array(
-                            'Home',
-                            'Tafeln',
-                            'Pralinen',
-                            'Zutaten',
-                            'Zubehör',
-                            'Kontakt'
-                        );
-                        $links= array(
-                            '/index.php',
-                            '/pages/tafeln.php',
-                            '/pages/Pralinen/pralinen.php',
-                            '/zutaten.html',
-                            '/zubehör.html',
-                            '/kontakt.html'
-                        );
-                        for($i = 0; $i < count($pages); $i++ )
-                        {
-                            $nav[$i][0] = $pages[$i];
-                            $nav[$i][1] = $links[$i];
-                        }
-                        foreach($nav as $element){
-                            echo '<li><a href="'.$element[1].'">'.$element[0].'</a></li>';
-                        }
-                    ?>
+                   <?php
+				   		create_nav("nav");
+				   ?> 
                 </ul>
             </nav>
             <aside>
                 <ul>
-                    <li><a href="account.html">Account</a></li>
-                    <li><a href="warenkorb.html">Warenkorb</a></li>
+                   <?php
+				   		create_nav("aside");
+				   ?> 
                 </ul>
             </aside>
             
