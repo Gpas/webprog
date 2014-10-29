@@ -70,6 +70,18 @@ nav a:hover, aside a:hover {
 	font-size: 2em;
 }
 
+/* Products */
+
+.product img {
+	width: 100px;
+}
+
+article .product {
+	float: left;
+	width: 30%;
+	margin: 1.6%;
+}
+
 /* 
  ****** Slider ******
  * */
