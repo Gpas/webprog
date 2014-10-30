@@ -6,6 +6,10 @@ header {
 	/*display: inline-block;*/
 }
 
+h3 {
+	font-size: 2em;
+}
+
 #logo {
 	width: 200px;
 	margin: 35px;
@@ -73,7 +77,8 @@ nav a:hover, aside a:hover {
 /* Products */
 
 .product img {
-	width: 100px;
+	width: 100%;
+	box-shadow: 10px 10px 10px gray;
 }
 
 article .product {

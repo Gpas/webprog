@@ -26,8 +26,8 @@
 		</section>
 		<section id="content" >
 			<?php
-				if(isset($_GET['Id'])) {
-					$page = $_GET['Id'];
+				if(isset($_GET['page'])) {
+					$page = $_GET['page'];
 					include "/pages/$page.php";
 				}
 				else {

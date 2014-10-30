@@ -12,11 +12,11 @@
 							);
 							$links= array(
 								'/index.php',
-								'/index.php?Id=tafeln',
-								'/index.php?Id=pralinen',
-								'/index.php?Id=zutaten',
-								'/index.php?Id=zubehoer',
-								'/index.php?Id=kontakt'
+								'/index.php?page=tafeln',
+								'/index.php?page=pralinen',
+								'/index.php?page=zutaten',
+								'/index.php?page=zubehoer',
+								'/index.php?page=kontakt'
 							);
 						}
 						else if ($location == "aside") {
@@ -25,8 +25,8 @@
 				    			'Account',
 							);
 							$links= array(
-								'/index.php?Id=warenkorb',
-								'/index.php?Id=account'
+								'/index.php?page=warenkorb',
+								'/index.php?page=account'
 							);
 						}
 						for($i = 0; $i < count($pages); $i++ )
@@ -35,12 +35,12 @@
 							$nav[$i][1] = $links[$i];
 						}
 						foreach($nav as $element){
-							$name = substr($element[1], strpos($element[1], "Id=")+3);
-							//ChromePhp::log("".$name." ".$_GET['Id']."");
-							if((!isset($_GET['Id'])) && ($element[0] == "Home")){
+							$name = substr($element[1], strpos($element[1], "page=")+5);
+							//ChromePhp::log("".$name." ".$_GET['page']."");
+							if((!isset($_GET['page'])) && ($element[0] == "Home")){
 								echo '<li><a class="active" href="'.$element[1].'">'.$element[0].'</a></li>';
 							}
-							else if((isset($_GET['Id'])) && (strpos($_GET['Id'], strtolower($name)) !== FALSE))
+							else if((isset($_GET['page'])) && (strpos($_GET['page'], strtolower($name)) !== FALSE))
 							{
 
 								echo '<li><a class="active" href="'.$element[1].'">'.$element[0].'</a></li>';	
