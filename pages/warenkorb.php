@@ -7,9 +7,20 @@ if(empty($_SESSION['cart'])) {
 }
 
 if (isset($_POST['id'])) {
+	$duplicate = FALSE;
 	$product = array('id' => $_POST['id'],
 					'quantity' => $_POST['quantity']);
-	array_push($_SESSION['cart'], $product);
+	foreach ($_SESSION['cart'] as $prod => $content){
+		ChromePhp::log($prod);
+		if ($content['id'] == $product['id']) {
+			ChromePhp::log($prod);
+			$_SESSION['cart'][$prod]['quantity'] += $product['quantity'];
+			$duplicate = TRUE;
+		}
+	}
+	if (!$duplicate) {
+		array_push($_SESSION['cart'], $product);
+	}
 }
 
 foreach ($_SESSION['cart'] as $product) {
