@@ -11,9 +11,7 @@ if (isset($_POST['id'])) {
 	$product = array('id' => $_POST['id'],
 					'quantity' => $_POST['quantity']);
 	foreach ($_SESSION['cart'] as $prod => $content){
-		ChromePhp::log($prod);
 		if ($content['id'] == $product['id']) {
-			ChromePhp::log($prod);
 			$_SESSION['cart'][$prod]['quantity'] += $product['quantity'];
 			$duplicate = TRUE;
 		}
