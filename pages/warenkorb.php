@@ -36,6 +36,10 @@ if (isset($_POST['unset'])) {
 
 ?>
 
+<form method="post" action="/index.php?page=bestellung">
+	<input type="submit" value="Bestellen"  />
+</form>
+
 <p>
 	LEEEEROY!
 </p>
