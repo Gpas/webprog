@@ -40,7 +40,7 @@ CREATE TABLE `produkte` (
   `Preis` double NOT NULL,
   `Bild` varchar(200) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `produkte` (
 
 LOCK TABLES `produkte` WRITE;
 /*!40000 ALTER TABLE `produkte` DISABLE KEYS */;
-INSERT INTO `produkte` VALUES (1,'TestProdukt','tafeln','bla bla bla bla',25.5,'/resource/logo.jpg'),(2,'Praline (weiss)','pralinen','Feinste Pralinen mit weissem Schokoladenüberzug',15,'/resource/logo.jpg');
+INSERT INTO `produkte` VALUES (1,'TestProdukt','tafeln','bla bla bla bla',25.5,'/resource/logo.jpg'),(2,'Praline (weiss)','pralinen','Feinste Pralinen mit weissem Schokoladenüberzug',15,'/resource/logo.jpg'),(3,'TestProdukt 2','tafeln','bla bla bla bla',25.5,'/resource/logo.jpg');
 /*!40000 ALTER TABLE `produkte` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-30 16:06:05
+-- Dump completed on 2014-10-31 16:22:16
