@@ -14,7 +14,7 @@
 	    </ul>
 	</aside>
 	
-	<article>
+	<article id="mainArticle">
 		<section id="location">
 			<?php
 				/* Muss noch angepasst werden. */
