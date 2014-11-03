@@ -1,7 +1,7 @@
 <header>
 	<img id="logo" src="/resource/logo.png" />
 	<div id="slider">
-		<div class="slider">
+		<div class="sliderQuery">
 			<img src="/resource/pralinen.jpg" alt="" />
 			<img src="/resource/schokolade_stapel.jpg" alt="" />
 			<img src="/resource/schokoladen_bleche.jpg" alt="" />
@@ -11,7 +11,7 @@
 
 <script>
 	$(document).ready(function(){
-	$('.slider').slick({
+	$('.sliderQuery').slick({
 		slide: "img",
 		autoplay: true,
 		dots: true,
