@@ -25,7 +25,7 @@
 					<td>'.$row['Name'].'</td>
 					<td>'.$row['Preis'].' CHF</td>
 					<td>'.$product['quantity'].'</td>
-					<td>'.$total.'</td>
+					<td>'.$total.' CHF</td>
 				</tr>
 			';
 		}
