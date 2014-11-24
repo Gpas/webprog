@@ -22,7 +22,24 @@ if (isset($_POST['id'])) {
 }
 
 foreach ($_SESSION['cart'] as $product) {
-	echo 'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>';
+	echo 'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
+		<form method="post" action="/index.php?page=warenkorb">
+		 <input type="submit" name="additem" value="+" />
+		</form>
+		
+		<form method="post" action="/index.php?page=warenkorb">
+		 <input type="submit" name="removeitem" value="-" />
+		</form>
+		 ';
+	
+}
+
+if (isset($_POST['removeitem'])) {
+	
+}
+
+if (isset($_POST['additem'])) {
+	
 }
 
 // Session löschen (evt mit Javascript machen)
@@ -36,10 +53,8 @@ if (isset($_POST['unset'])) {
 
 ?>
 
+
+
 <form method="post" action="/index.php?page=bestellung">
 	<input type="submit" value="Bestellen"  />
 </form>
-
-<p>
-	LEEEEROY!
-</p>
