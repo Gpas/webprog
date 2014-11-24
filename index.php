@@ -1,4 +1,8 @@
 <?php
+
+require_once '/vendor/autoload.php';
+require_once '/vendor/bin/generated-conf/config.php';
+
 $username = "root";
 $password = "";
 $hostname = "localhost";
