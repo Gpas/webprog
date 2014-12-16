@@ -16,14 +16,14 @@
 			<tbody>
 			';
 		foreach ($_SESSION['cart'] as $product){
-			$result = $mysqli->query('SELECT * FROM produkte WHERE ID="'.$product['id'].'"'); 
+			$result = DB::doQuery('SELECT * FROM products WHERE id="'.$product['id'].'"'); 
 			$row = $result->fetch_assoc();
-			$total = $product['quantity'] * $row['Preis'];
+			$total = $product['quantity'] * $row['price'];
 			echo '
 				<tr>
 					<td>'.$product['id'].'</td>
-					<td>'.$row['Name'].'</td>
-					<td>'.$row['Preis'].' CHF</td>
+					<td>'.$row['name'].'</td>
+					<td>'.$row['price'].' CHF</td>
 					<td>'.$product['quantity'].'</td>
 					<td>'.$total.' CHF</td>
 				</tr>

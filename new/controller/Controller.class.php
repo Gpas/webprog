@@ -21,7 +21,9 @@ class Controller {
 	}
 	
 	public function pralinen(Request $request) {
-		
+		$sort = $request->getParameter('sort', 'id');
+		$this->data["products"] = Product::getProducts($sort);
+		$this->title = "Pralinen List";
 	}
 	
 	public function tafeln(Request $request) {

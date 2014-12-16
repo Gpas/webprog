@@ -26,31 +26,82 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `web_prog` /*!40100 DEFAULT CHARACTER S
 USE `web_prog`;
 
 --
--- Table structure for table `produkte`
+-- Table structure for table `products`
 --
 
-DROP TABLE IF EXISTS `produkte`;
+DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `produkte` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(100) NOT NULL,
-  `Kategorie` varchar(20) NOT NULL,
-  `Beschreibung` text NOT NULL,
-  `Preis` double NOT NULL,
-  `Bild` varchar(200) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(30) NOT NULL,
+  `price` double NOT NULL DEFAULT '0',
+  `img` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `produkte`
+-- Dumping data for table `products`
 --
 
-LOCK TABLES `produkte` WRITE;
-/*!40000 ALTER TABLE `produkte` DISABLE KEYS */;
-INSERT INTO `produkte` VALUES (1,'TestProdukt','tafeln','bla bla bla bla',25.5,'/resource/logo.jpg'),(2,'Praline (weiss)','pralinen','Feinste Pralinen mit weissem Schokoladenüberzug',15,'/resource/logo.jpg'),(3,'TestProdukt 2','tafeln','bla bla bla bla',25.5,'/resource/logo.jpg');
-/*!40000 ALTER TABLE `produkte` ENABLE KEYS */;
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg'),(2,'pralines',24.5,'pralinen.jpg');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products_lang`
+--
+
+DROP TABLE IF EXISTS `products_lang`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products_lang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `lang_code` varchar(2) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id`),
+  KEY `product_id_idx` (`product_id`),
+  CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products_lang`
+--
+
+LOCK TABLES `products_lang` WRITE;
+/*!40000 ALTER TABLE `products_lang` DISABLE KEYS */;
+INSERT INTO `products_lang` VALUES (1,1,'de','Testprodukt','Testbeschreibung'),(2,2,'de','Testprodukt 2','Testbeschreibung 2');
+/*!40000 ALTER TABLE `products_lang` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `pw` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -62,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-08 21:05:52
+-- Dump completed on 2014-12-16 15:22:00

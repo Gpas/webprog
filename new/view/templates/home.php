@@ -24,6 +24,6 @@
 Hier kannst du all deine Schoggi Wünsche erfüllen! 
 Und das ganze ohne Versandkosten und extra schneller Lieferung.
 </p>
-<div id="dialog" title="AGB Zustimmung">
+<!--<div id="dialog" title="AGB Zustimmung">
 	<p>Damit der Kaufvorgang abgeschlossen werden kann, müssen Sie den AGB zustimmen.</p>
-</div>
+</div>-->
