@@ -38,7 +38,7 @@ CREATE TABLE `products` (
   `price` double NOT NULL DEFAULT '0',
   `img` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg'),(2,'pralines',24.5,'pralinen.jpg');
+INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg'),(2,'pralines',24.5,'pralinen.jpg'),(3,'pralines',33.1,'pralinen.jpg');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `products_lang` (
   PRIMARY KEY (`id`),
   KEY `product_id_idx` (`product_id`),
   CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +76,7 @@ CREATE TABLE `products_lang` (
 
 LOCK TABLES `products_lang` WRITE;
 /*!40000 ALTER TABLE `products_lang` DISABLE KEYS */;
-INSERT INTO `products_lang` VALUES (1,1,'de','Testprodukt','Testbeschreibung'),(2,2,'de','Testprodukt 2','Testbeschreibung 2');
+INSERT INTO `products_lang` VALUES (1,1,'de','Testprodukt','Testbeschreibung'),(2,2,'de','Testprodukt 2','Testbeschreibung 2'),(3,3,'de','TestProdukt 3','bla bla bla bla');
 /*!40000 ALTER TABLE `products_lang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,7 @@ CREATE TABLE `users` (
   `name` varchar(32) NOT NULL,
   `pw` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,6 +101,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'test','1234');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -113,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-16 15:22:00
+-- Dump completed on 2014-12-20 11:02:17

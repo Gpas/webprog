@@ -46,6 +46,28 @@ class Controller {
 		
 	}
 	
+	public function login(Request $request) {
+		$login = $request->getParameter('login', '');
+		$pw = $request->getParameter('pw', '');
+		if (!User::checkCredentials($login, $pw)) {
+			$this->data['message'] = "Sorry, wrong login/pw!";
+			return "account";
+		}
+		$this->startSession();
+		$_SESSION['user'] = $login;
+		$this->data['message'] = "You just logged in!";
+		return "home";	
+		
+	}
+		
+	public function logout(Request $request) {
+		$this->startSession();
+		session_destroy();
+		$_SESSION = [];
+		$this->data['message'] = "You just logged out!";
+		return "home";
+	}
+	
 	public function list_students(Request $request) {
 		$sort = $request->getParameter('sort', 'id');
 		$this->data["students"] = Student::getStudents($sort);
@@ -92,27 +114,7 @@ class Controller {
 		$this->redirect("home");
 	}
 	
-	
-	public function login(Request $request) {
-		$login = $request->getParameter('login', '');
-		$pw = $request->getParameter('pw', '');
-		if (!User::checkCredentials($login, $pw)) {
-			$this->data['message'] = "Sorry, wrong login/pw!";
-			return;
-		}
-		$this->startSession();
-		$_SESSION['user'] = $login;
-		$this->data['message'] = "You just logged in!";
-		return "home";	
-	}
-	
-	public function logout(Request $request) {
-		$this->startSession();
-		session_destroy();
-		$_SESSION = [];
-		$this->data['message'] = "You just logged out!";
-		return "home";
-	}
+
 	
 	
 	public function __call($function, $args) {
