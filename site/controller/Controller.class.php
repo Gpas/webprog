@@ -9,7 +9,11 @@ class Controller {
 	// A C T I O N S
 	
 	public function home(Request $request) {
-		$this->data["message"] = "Hello World!";
+		$this->data["message"] = "<h1>Willkommen im Schoggi Shop</h1>
+		<p>
+		Hier kannst du all deine Schoggi Wünsche erfüllen! 
+		Und das ganze ohne Versandkosten und extra schneller Lieferung.
+		</p>";
 	}
 	
 	public function bestellung(Request $request) {
@@ -23,7 +27,7 @@ class Controller {
 	public function pralinen(Request $request) {
 		$sort = $request->getParameter('sort', 'id');
 		$this->data["products"] = Product::getProducts($sort);
-		$this->title = "Pralinen List";
+		$this->title = "Pralinen";
 	}
 	
 	public function tafeln(Request $request) {
@@ -43,20 +47,28 @@ class Controller {
 	}
 	
 	public function account(Request $request) {
-		
+		$this->startSession();
+		if (isset($_SESSION['user'])){
+			$user = $_SESSION['user'];
+			$this->data['message'] = "You are logged in as ".$user->getName().".";
+		}
+		else {
+			return "account_login";
+		}
 	}
 	
 	public function login(Request $request) {
 		$login = $request->getParameter('login', '');
 		$pw = $request->getParameter('pw', '');
-		if (!User::checkCredentials($login, $pw)) {
+		$user = User::login($login, $pw);
+		if (!$user) {
 			$this->data['message'] = "Sorry, wrong login/pw!";
-			return "account";
+			return "account_login";
 		}
 		$this->startSession();
-		$_SESSION['user'] = $login;
-		$this->data['message'] = "You just logged in!";
-		return "home";	
+		$_SESSION['user'] = $user;
+		$this->data['message'] = "You just logged in as ".$user->getName()."!";
+		return "account";	
 		
 	}
 		

@@ -17,7 +17,7 @@ class View {
 			$$key = $value;
 		}
 		$title = $this->controller->getTitle();
-		$title = $title ? "MVC - " . $title : "MVC";
+		$title = $title ? "Schoggi Shop - " . $title : "Schoggi Shop";
 		include __DIR__ ."/templates/main.php";
 	}
 }

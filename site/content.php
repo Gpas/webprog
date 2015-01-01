@@ -16,11 +16,8 @@
 	<article id="mainArticle">
 		<section id="location">
 			<?php
-				/* Muss noch angepasst werden. */
-				$crumbs = explode("/",$_SERVER["REQUEST_URI"]);
-				foreach($crumbs as $crumb){
-				echo ucfirst(str_replace(array(".php","_","pages"),array(""," ",""),$crumb) . ' ');
-				}
+				/* Muss noch angepasst werden. 
+				Location muss hier eingefügt werden */
 			?>
 		</section>
 		<section id="content" >
