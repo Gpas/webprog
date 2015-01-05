@@ -75,13 +75,33 @@ class Controller {
 		
 	public function logout(Request $request) {
 		$this->startSession();
-		session_destroy();
-		$_SESSION = [];
+		unset($_SESSION['user']);
 		$this->data['message'] = "Du hast dich erfolgreich ausgeloggt!";
 		return "home";
 	}
 	
-
+	public function addProduct(Request $request){
+		$id = getParameter('id','null');
+		$quantity = getParameter('quantity','1');
+		$options = getParameter('options','-1');
+		$cart = $_SESSION['cart'];
+		$cart->addProduct($id, $quantity, $options);
+		$cart->renderSidebar();
+	}
+	
+	public function removeProduct(Request $request){
+		$id = getParameter('id','null');
+		$quantity = getParameter('quantity','1');
+		$options = getParameter('options','-1');
+		$cart = $_SESSION['cart'];
+		$cart->removeProduct($id, $quantity, $options);
+		$cart->renderSidebar();
+	}
+	
+	public function renderSideCart(Request $request){
+		$cart = $_SESSION['cart'];
+		echo $cart->renderSidebar();
+	}
 	
 	
 	public function __call($function, $args) {
@@ -130,11 +150,7 @@ class Controller {
 
 ?>
 
-<script>
-	function addProduct(){
-		
-	}
-</script>
+
 
 
 

@@ -52,6 +52,24 @@ class Cart{
 		}
 	}
 	
+	public function renderSidebar(){
+		$out = "";
+		foreach ($products as $product) {
+			
+			$out = $out .  'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
+			<form method="post" action="/index.php?action=warenkorb">
+			 <input type="submit" name="additem" value="+" />
+			</form>
+			
+			<form method="post" action="/index.php?action=warenkorb">
+			 <input type="submit" name="removeitem" value="-" />
+			</form>
+			 ';
+			 
+		}
+		return $out;
+	}
+	
 	public function reset(){
 		$products = array();
 	}

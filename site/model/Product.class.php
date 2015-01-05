@@ -71,16 +71,29 @@ class Product {
 				<section class="description">
 					'.$this->getDescription().'
 				</section>
-	 			<form class="orderProduct" method="post" action="/index.php?action=warenkorb">
+	 			<form class="orderProduct" method="post" action="">
 					<select name="quantity">';
 		for ($i=1; $i <= 10 ; $i++) { 
 			echo '<option value="'.$i.'">'.$i.'</option>';
 		}
 		echo '</select>
 				<input type="hidden" name="id" value='.$this->getId().' />
-				<button type="submit" name="addProduct" >Bestellen</button>
+				<button class="order" name="addProduct" >Bestellen</button>
 				</form>
 				</article>';
 	}
 }
 ?>
+
+<script>
+	$(document).ready(function(){
+			$("#order").on("click", function(){
+					$.post("index.php?action=addProduct",
+					$(".orderProduct").serialize(),
+					function sucess(){
+						$("#warenkorb").load("index.php?action=renderSideCart");
+					}
+				);
+			});
+	})
+</script>
