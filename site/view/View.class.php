@@ -9,15 +9,17 @@ class View {
 	}
 	
 	public function render($tpl) {
-		$innerTpl = __DIR__ ."/templates/$tpl.php";
-		if(!file_exists($innerTpl)) {
-			throw new Exception("The template '$tpl.php' does not exist!");
+		if($tpl != "noView"){
+			$innerTpl = __DIR__ ."/templates/$tpl.php";
+			if(!file_exists($innerTpl)) {
+				throw new Exception("The template '$tpl.php' does not exist!");
+			}
+			foreach($this->controller->getData() as $key=>$value) {
+				$$key = $value;
+			}
+			$title = $this->controller->getTitle();
+			$title = $title ? "Schoggi Shop - " . $title : "Schoggi Shop";
+			include __DIR__ ."/templates/main.php";
 		}
-		foreach($this->controller->getData() as $key=>$value) {
-			$$key = $value;
-		}
-		$title = $this->controller->getTitle();
-		$title = $title ? "Schoggi Shop - " . $title : "Schoggi Shop";
-		include __DIR__ ."/templates/main.php";
 	}
 }

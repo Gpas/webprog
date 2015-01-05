@@ -86,26 +86,27 @@ class Controller {
 	}
 	
 	public function addProduct(Request $request){
-		$id = getParameter('id','null');
-		$quantity = getParameter('quantity','1');
-		$options = getParameter('options','-1');
+		$id = $request->getParameter('id','null');
+		$quantity = $request->getParameter('quantity','1');
+		$options = $request->getParameter('options','-1');
 		$cart = $_SESSION['cart'];
 		$cart->addProduct($id, $quantity, $options);
-		$cart->renderSidebar();
+		return "noView";
 	}
 	
 	public function removeProduct(Request $request){
-		$id = getParameter('id','null');
-		$quantity = getParameter('quantity','1');
-		$options = getParameter('options','-1');
+		$id = $request->getParameter('id','null');
+		$quantity = $request->getParameter('quantity','1');
+		$options = $request->getParameter('options','-1');
 		$cart = $_SESSION['cart'];
 		$cart->removeProduct($id, $quantity, $options);
-		$cart->renderSidebar();
+		return "noView";
 	}
 	
 	public function renderSideCart(Request $request){
 		$cart = $_SESSION['cart'];
 		echo $cart->renderSidebar();
+		return "noView";
 	}
 	
 	

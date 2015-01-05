@@ -91,21 +91,10 @@ class Product {
 	public function render(){
 		echo '<a href = "index.php?action=produktansicht&produkt_id='.$this->getId().'"><article class="product">
 				<h3>'.$this->getName().'</h3>
-				<img alt="Produktbild" src="/assets/images/'.$this->getImg().'"></a>
-				</article>';
+				<img alt="Produktbild" src="/assets/images/'.$this->getImg().'">
+				</article></a>';
 	}
 }
 ?>
 
-<script>
-	$(document).ready(function(){
-			$("#order").on("click", function(){
-					$.post("index.php?action=addProduct",
-					$(".orderProduct").serialize(),
-					function sucess(){
-						$("#warenkorb").load("index.php?action=renderSideCart");
-					}
-				);
-			});
-	})
-</script>
+

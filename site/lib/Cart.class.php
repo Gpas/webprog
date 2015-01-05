@@ -12,34 +12,40 @@ class Cart{
 		$this->reset();
 	}
 	
+	public function reset(){
+		$this->products = array();
+	}
+	
 	public function addProduct($Id, $Quantity="1", $Options="-1"){
 		$duplicate = FALSE;
 		$product = array('id' => $Id, 'quantity' => $Quantity, 'options' => $Options);
-		foreach ($products as $prod => $content){
-			if (($content['id'] == $product['id']) && ($content['options'] == $product['options'])) {
-				$products[$prod]['quantity'] += $product['quantity'];
-				$duplicate = TRUE;
+		if(count($this->products)> 0){
+			foreach ($this->products as $prod => $content){
+				if (($content['id'] == $product['id']) && ($content['options'] == $product['options'])) {
+					$this->products[$prod]['quantity'] += $product['quantity'];
+					$duplicate = TRUE;
+				}
 			}
 		}
 		if (!$duplicate) {
-			array_push($products, $product);
+			$this->products[] = $product;
 		}
 	}
 	
 	public function removeProduct($Id, $Quantity="1", $Options="-1"){
 		$product = array('id' => $Id, 'quantity' => $Quantity, 'options' => $Options);
-		foreach ($products as $prod => $content){
+		foreach ($this->products as $prod => $content){
 			if (($content['id'] == $product['id']) && ($content['options'] == $product['options'])) {
-				$products[$prod]['quantity'] -= $product['quantity'];
+				$this->products[$prod]['quantity'] -= $product['quantity'];
 				if(($Quantity <= 0) || ($products[$prod]['quantity'] <= 0)){
-					unset($products[$prod]);
+					unset($this->products[$prod]);
 				}
 			}
 		}
 	}
 	
 	public function render(){
-		foreach ($products as $product) {
+		foreach ($this->products as $product) {
 			echo 'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
 			<form method="post" action="/index.php?action=warenkorb">
 			 <input type="submit" name="additem" value="+" />
@@ -54,27 +60,26 @@ class Cart{
 	
 	public function renderSidebar(){
 		$out = "";
-		foreach ($products as $product) {
-			
-			$out = $out .  'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
-			<form method="post" action="/index.php?action=warenkorb">
-			 <input type="submit" name="additem" value="+" />
-			</form>
-			
-			<form method="post" action="/index.php?action=warenkorb">
-			 <input type="submit" name="removeitem" value="-" />
-			</form>
-			 ';
-			 
+		if(isset($this->products)) {
+			foreach ($this->products as $product) {
+				
+				$out = $out .  'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
+				<form method="post" action="/index.php?action=warenkorb">
+				 <input type="submit" name="additem" value="+" />
+				</form>
+				
+				<form method="post" action="/index.php?action=warenkorb">
+				 <input type="submit" name="removeitem" value="-" />
+				</form>
+				 ';
+				 
+				 }
+		}
+		else{
+			$out = "Keine Produkte im Warenkorb.";
 		}
 		return $out;
 	}
-	
-	public function reset(){
-		$products = array();
-	}
-	
-	
 	
 }
 

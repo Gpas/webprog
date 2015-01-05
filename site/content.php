@@ -12,6 +12,9 @@
 				create_nav("aside");
 		   ?>
 		   <section id="warenkorb">
+		   	<?php 
+		   		echo $_SESSION['cart']->renderSidebar();
+		   	?>
 		   </section>
 	    </ul>
 	</aside>
