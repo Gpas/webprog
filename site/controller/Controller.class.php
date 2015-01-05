@@ -31,6 +31,9 @@ class Controller {
 	}
 	
 	public function tafeln(Request $request) {
+		$sort = $request->getParameter('sort', 'id');
+		$this->data["products"] = Product::getProductsbyCat('tafeln', $sort);
+		$this->title = "Tafeln";
 		
 	}
 	
