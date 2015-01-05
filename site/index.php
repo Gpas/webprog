@@ -11,6 +11,9 @@
 		die("Unable to connect to database [".DB::getInstance()->connect_error."]");
 	}
 	
+	// Init cart
+	$cart = new Cart();
+		
 	try {
 		// Create controller
 		$controller = new Controller();

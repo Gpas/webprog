@@ -21,12 +21,12 @@
 						}
 						else if ($location == "aside") {
 							$pages = array(
-				    			'Warenkorb',
 				    			'Account',
+				    			'Warenkorb'
 							);
 							$links= array(
-								'/index.php?action=warenkorb',
-								'/index.php?action=account'
+								'/index.php?action=account',
+								'/index.php?action=warenkorb'
 							);
 						}
 						for($i = 0; $i < count($pages); $i++ )

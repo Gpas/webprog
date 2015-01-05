@@ -11,6 +11,8 @@
 	       <?php
 				create_nav("aside");
 		   ?>
+		   <section id="warenkorb">
+		   </section>
 	    </ul>
 	</aside>
 	<article id="mainArticle">

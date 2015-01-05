@@ -26,6 +26,7 @@ class Controller {
 	
 	public function pralinen(Request $request) {
 		$sort = $request->getParameter('sort', 'id');
+		$this->startSession();
 		$this->data["products"] = Product::getProducts($sort);
 		$this->title = "Pralinen";
 	}
@@ -173,8 +174,13 @@ class Controller {
 	
 }
 
+?>
 
-
+<script>
+	function addProduct(){
+		
+	}
+</script>
 
 
 
