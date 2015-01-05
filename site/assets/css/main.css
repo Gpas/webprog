@@ -126,6 +126,24 @@ article .product {
 	margin: 1.6%;
 }
 
+article .product a{
+	text-decoration: none;
+	color: black;
+}
+
+.productdetail img {
+	width: 100%;
+	box-shadow: 10px 10px 10px gray;
+	margin-bottom: 30px;
+}
+
+article .productdetail {
+	float: left;
+	width: 50%;
+	margin: 1.6%;
+}
+	
+
 /* 
  ****** Slider ******
  * */
