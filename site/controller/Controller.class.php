@@ -3,7 +3,7 @@
 class Controller {
 	
 	private $data = array();
-	private $sessionState = false;
+	private $sessionState = true;
 	private $title;
 	
 	// A C T I O N S
@@ -26,13 +26,18 @@ class Controller {
 	
 	public function pralinen(Request $request) {
 		$sort = $request->getParameter('sort', 'id');
-		$this->startSession();
-		$this->data["products"] = Product::getProducts($sort);
+		$this->data["products"] = Product::getProductsbyCat('pralines', $sort);
 		$this->title = "Pralinen";
 	}
 	
 	public function tafeln(Request $request) {
 		
+	}
+	
+	public function produktansicht(Request $request) {
+		$id = $request->getParameter('produkt_id', '0');
+		$this->data["product"] = Product::getProductbyId($id);
+		$this->title = $this->data["product"]->getName();
 	}
 	
 	public function warenkorb(Request $request) {

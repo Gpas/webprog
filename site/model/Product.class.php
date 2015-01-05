@@ -49,6 +49,8 @@ class Product {
 	}
 	
 	//functions
+	
+	// NOT USED
 	public static function getProducts($orderBy="id", $lang_code="de"){
 		$orderByStr = '';
 		if (in_array($orderBy, ['id', 'price', 'name', 'description']) ) {
@@ -64,22 +66,32 @@ class Product {
 		return $products;
 	}
 	
-	public function render(){
-		echo '<article class="product">
-				<h3>'.$this->getName().'</h3>
-				<img alt="Produktbild" src="/assets/images/'.$this->getImg().'">
-				<section class="description">
-					'.$this->getDescription().'
-				</section>
-	 			<form class="orderProduct" method="post" action="">
-					<select name="quantity">';
-		for ($i=1; $i <= 10 ; $i++) { 
-			echo '<option value="'.$i.'">'.$i.'</option>';
+	public static function getProductbyId($Id, $lang_code="de") {
+		$res = DB::doQuery("SELECT p.*, l.name AS 'name', l.description AS 'description' FROM products p LEFT OUTER JOIN products_lang l ON p.id = l.product_id WHERE p.id = '$Id' AND l.lang_code = '$lang_code' ");
+		$product = $res->fetch_object(get_class());
+		return $product;
+	}
+	
+	public static function getProductsbyCat($cat, $orderBy="id", $lang_code="de"){
+		$orderByStr = '';
+		if (in_array($orderBy, ['id', 'price', 'name', 'description']) ) {
+			$orderByStr = " ORDER BY $orderBy";
 		}
-		echo '</select>
-				<input type="hidden" name="id" value='.$this->getId().' />
-				<button class="order" name="addProduct" >Bestellen</button>
-				</form>
+		$products = array();
+		$res = DB::doQuery("SELECT p.*, l.name AS 'name', l.description AS 'description' FROM products p LEFT OUTER JOIN products_lang l ON p.id = l.product_id WHERE p.category = '$cat' AND l.lang_code = '$lang_code' $orderByStr");
+		if ($res) {
+			while ($product = $res->fetch_object(get_class())) {
+				$products[] = $product;
+			}
+		}
+		return $products;
+		
+	}
+	
+	public function render(){
+		echo '<a href = "index.php?action=produktansicht&produkt_id='.$this->getId().'"><article class="product">
+				<h3>'.$this->getName().'</h3>
+				<img alt="Produktbild" src="/assets/images/'.$this->getImg().'"></a>
 				</article>';
 	}
 }
