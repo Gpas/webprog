@@ -51,7 +51,7 @@ class Controller {
 		$this->startSession();
 		if (isset($_SESSION['user'])){
 			$user = $_SESSION['user'];
-			$this->data['message'] = "You are logged in as ".$user->getName().".";
+			$this->data['message'] = "Du bist eingeloggt als ".$user->getName().".";
 		}
 		else {
 			return "account_login";
@@ -63,12 +63,12 @@ class Controller {
 		$pw = $request->getParameter('pw', '');
 		$user = User::login($login, $pw);
 		if (!$user) {
-			$this->data['message'] = "Sorry, wrong login/pw!";
+			$this->data['message'] = "Sorry, falsches login/pw!";
 			return "account_login";
 		}
 		$this->startSession();
 		$_SESSION['user'] = $user;
-		$this->data['message'] = "You just logged in as ".$user->getName()."!";
+		$this->data['message'] = "Du bist eingeloggt als ".$user->getName()."!";
 		return "account";	
 		
 	}
@@ -77,54 +77,8 @@ class Controller {
 		$this->startSession();
 		session_destroy();
 		$_SESSION = [];
-		$this->data['message'] = "You just logged out!";
+		$this->data['message'] = "Du hast dich erfolgreich ausgeloggt!";
 		return "home";
-	}
-	
-	public function list_students(Request $request) {
-		$sort = $request->getParameter('sort', 'id');
-		$this->data["students"] = Student::getStudents($sort);
-		$this->title = "Student List";
-	}
-	
-	public function edit_student(Request $request) {
-		if (!$this->isLoggedIn()) {
-			$this->data['message'] = "To edit a student, you have to login first.";
-			return "login";
-		}
-		$id = $request->getParameter('id', 0);
-		$student = Student::getStudentById($id);
-		
-		if ($student == null) {
-			return $this->page404();
-		}
-		
-		$this->data['student'] = $student;
-		$this->data['projects'] = Project::getProjects('title');
-		
-		$this->title = "Edit Student";
-	}
-	
-	public function update_student(Request $request) {
-		if (!$this->isLoggedIn()) {
-			$this->data['message'] = "To update a student, you have to login first.";
-			return "login";
-		}
-		$values = $request->getParameter('student', array());
-		
-		$student = Student::getStudentById($values['id']);
-		if ($student == null) {
-			return $this->page404();
-		}
-		
-		$student->update($values);
-		$student->save();
-		$this->data['message'] = "Student saved!";
-		return $this->internalRedirect("list_students", $request);
-	}
-	
-	public function delete_student(Request $request) {
-		$this->redirect("home");
 	}
 	
 
