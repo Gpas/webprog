@@ -45,17 +45,24 @@ class Cart{
 	}
 	
 	public function render(){
-		foreach ($this->products as $product) {
-			echo 'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
-			<form method="post" action="/index.php?action=warenkorb">
-			 <input type="submit" name="additem" value="+" />
-			</form>
-			
-			<form method="post" action="/index.php?action=warenkorb">
-			 <input type="submit" name="removeitem" value="-" />
-			</form>
-			 ';
+		$out = "";
+		if(isset($this->products)) {
+			foreach ($this->products as $product) {
+				$out = $out . 'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
+				<form method="post" action="/index.php?action=warenkorb">
+				 <input type="submit" name="additem" value="+" />
+				</form>
+				
+				<form method="post" action="/index.php?action=warenkorb">
+				 <input type="submit" name="removeitem" value="-" />
+				</form>
+				 ';
+			}
 		}
+		else{
+			$out = "Keine Produkte im Warenkorb.";
+		}
+		return $out;
 	}
 	
 	public function renderSidebar(){

@@ -26,6 +26,56 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `web_prog` /*!40100 DEFAULT CHARACTER S
 USE `web_prog`;
 
 --
+-- Table structure for table `options`
+--
+
+DROP TABLE IF EXISTS `options`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `options` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `values` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `options`
+--
+
+LOCK TABLES `options` WRITE;
+/*!40000 ALTER TABLE `options` DISABLE KEYS */;
+/*!40000 ALTER TABLE `options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `options_lang`
+--
+
+DROP TABLE IF EXISTS `options_lang`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `options_lang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `options_id` int(11) NOT NULL,
+  `lang_code` varchar(2) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `options_id_idx` (`options_id`),
+  CONSTRAINT `options_id` FOREIGN KEY (`options_id`) REFERENCES `options` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `options_lang`
+--
+
+LOCK TABLES `options_lang` WRITE;
+/*!40000 ALTER TABLE `options_lang` DISABLE KEYS */;
+/*!40000 ALTER TABLE `options_lang` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `products`
 --
 
@@ -37,6 +87,7 @@ CREATE TABLE `products` (
   `category` varchar(30) NOT NULL,
   `price` double NOT NULL DEFAULT '0',
   `img` varchar(100) NOT NULL,
+  `options` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,7 +98,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg'),(2,'pralines',24.5,'pralinen.jpg'),(3,'pralines',33.1,'pralinen.jpg'),(4,'tafeln',8.5,'dunkleSchokolade.jpg');
+INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg',NULL),(2,'pralines',24.5,'pralinen.jpg',NULL),(3,'pralines',33.1,'pralinen.jpg',NULL),(4,'tafeln',8.5,'dunkleSchokolade.jpg',NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-05 14:55:23
+-- Dump completed on 2015-01-07 12:38:08
