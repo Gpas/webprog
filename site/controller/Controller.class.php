@@ -21,7 +21,13 @@ class Controller {
 	}
 	
 	public function kontakt(Request $request) {
-		
+		$this->data["message"] = "<h3>Kontaktadresse</h3>
+		<p>
+		SchoggiShop GmbH <br>
+		Hauptstrasse 23 <br>
+		3000 Bern <br>
+		Email: info@schoggishop.ch 
+		</p>";
 	}
 	
 	public function pralinen(Request $request) {
@@ -49,10 +55,17 @@ class Controller {
 	}
 	
 	public function zubehoer(Request $request) {
-		
+		$sort = $request->getParameter('sort', 'id');
+		$this->data["products"] = Product::getProductsbyCat('zubehoer', $sort);
+		$this->title = "Zubehoer";
 	}
 	
 	public function zutaten(Request $request) {
+		$sort = $request->getParameter('sort', 'id');
+		$this->data["products"] = Product::getProductsbyCat('zutaten', $sort);
+		$this->title = "Zutaten";
+			
+		
 		
 	}
 	

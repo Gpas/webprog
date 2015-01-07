@@ -34,9 +34,9 @@ DROP TABLE IF EXISTS `options`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `options` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `values` text NOT NULL,
+  `opt_values` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +45,7 @@ CREATE TABLE `options` (
 
 LOCK TABLES `options` WRITE;
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
+INSERT INTO `options` VALUES (1,'80%|90%|100%');
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +64,7 @@ CREATE TABLE `options_lang` (
   PRIMARY KEY (`id`),
   KEY `options_id_idx` (`options_id`),
   CONSTRAINT `options_id` FOREIGN KEY (`options_id`) REFERENCES `options` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +73,7 @@ CREATE TABLE `options_lang` (
 
 LOCK TABLES `options_lang` WRITE;
 /*!40000 ALTER TABLE `options_lang` DISABLE KEYS */;
+INSERT INTO `options_lang` VALUES (1,1,'de','Kakaoanteil');
 /*!40000 ALTER TABLE `options_lang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +91,7 @@ CREATE TABLE `products` (
   `img` varchar(100) NOT NULL,
   `options` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +100,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg',NULL),(2,'pralines',24.5,'pralinen.jpg',NULL),(3,'pralines',33.1,'pralinen.jpg',NULL),(4,'tafeln',8.5,'dunkleSchokolade.jpg',NULL);
+INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg',NULL),(2,'pralines',24.5,'pralinen.jpg',NULL),(3,'pralines',33.1,'pralinen.jpg',NULL),(6,'tafeln',12.5,'dunkleSchokolade.jpg','1|2|3'),(7,'tafeln',13.5,'weisseSchokolade.jpg',NULL),(8,'tafeln',13.5,'milchSchokolade.jpg',NULL),(9,'zutaten',1.5,'zucker.jpg',NULL),(10,'zutaten',5.5,'kakao.png',NULL),(11,'zubehoer',49,'mixer.jpg',NULL),(12,'zubehoer',8.1,'gabel.jpg',NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +120,7 @@ CREATE TABLE `products_lang` (
   PRIMARY KEY (`id`),
   KEY `product_id_idx` (`product_id`),
   CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +129,7 @@ CREATE TABLE `products_lang` (
 
 LOCK TABLES `products_lang` WRITE;
 /*!40000 ALTER TABLE `products_lang` DISABLE KEYS */;
-INSERT INTO `products_lang` VALUES (1,1,'de','Testprodukt','Testbeschreibung'),(2,2,'de','Testprodukt 2','Testbeschreibung 2'),(3,3,'de','TestProdukt 3','bla bla bla bla'),(4,4,'de','Dunkle Schokolade','Feinste dunkle Schokolade');
+INSERT INTO `products_lang` VALUES (1,1,'de','Testprodukt','Testbeschreibung'),(2,2,'de','Testprodukt 2','Testbeschreibung 2'),(3,3,'de','TestProdukt 3','bla bla bla bla'),(6,6,'de','Dunkle Schokolade','Feinste dunkle Schokolade in 3 verschiedenen Varianten'),(7,7,'de','Weisse Schokolade','Feinste weisse Schokolade'),(8,8,'de','Milchschokolade','Feinste Milchschokolade'),(9,9,'de','Zucker (1kg)',' Feinkristallzucker 1Kg'),(10,10,'de','Kakaopulvver','Dr. Oetker Kakao zum Backen eignet sich besonders für Ihre Backrezepte. Das vollmundige Aroma und die rötlich dunkle Farbe garantieren ein hervorragendes Backergebnis. Ideal auch für die Zubereitung von köstlichen Desserts und Trinkschokolade.'),(11,11,'de','450 Watt Mixer','(450 Watt, 5 Geschwindigkeitsstufen) weiss'),(12,12,'de','Gabel','Eine Gabel');
 /*!40000 ALTER TABLE `products_lang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-07 12:38:08
+-- Dump completed on 2015-01-07 15:16:24
