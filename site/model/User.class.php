@@ -17,6 +17,7 @@ class User {
 		$this->name = $name;
 	}
 	
+	//functions
 	public static function login($name, $pw) {
 		$res = DB::doQuery("SELECT * FROM users WHERE name ='$name' AND pw = '$pw' ");
 		if ($res) {
