@@ -44,7 +44,8 @@ class Controller {
 	}
 	
 	public function warenkorb(Request $request) {
-		
+		$this->data["cart"] = $_SESSION['cart'];
+		$this->title = "Warenkorb";
 	}
 	
 	public function zubehoer(Request $request) {
@@ -109,6 +110,17 @@ class Controller {
 	public function renderSideCart(Request $request){
 		$cart = $_SESSION['cart'];
 		echo $cart->renderSidebar();
+		return "noView";
+	}
+	
+	public function renderCart(Request $request){
+		$cart = $_SESSION['cart'];
+		echo $cart->render();
+		return "noView";
+	}
+	
+	public function clearCart(Request $request){
+		unset($_SESSION['cart']);
 		return "noView";
 	}
 	

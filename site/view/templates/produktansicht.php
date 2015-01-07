@@ -1,17 +1,17 @@
 <?php
 		echo '
 		<script>
-	$(document).ready(function(){
-			$(".order").on("click", function(){
-					$.post("index.php?action=addProduct",
-					$(".orderProduct").serialize(),
-					function sucess(data){
-						$("#warenkorb").load("index.php?action=renderSideCart");
-					}
-				);
+			$(document).ready(function(){
+					$(".order").on("click", function(){
+							$.post("index.php?action=addProduct",
+							$(this).parent().serialize(),
+							function sucess(){
+								$("#warenkorb").load("index.php?action=renderSideCart");
+							}
+						);
+					});
 			});
-	});
-</script>
+		</script>
 		';
 		
 		echo '<article class="productdetail">

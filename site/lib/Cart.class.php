@@ -37,7 +37,7 @@ class Cart{
 		foreach ($this->products as $prod => $content){
 			if (($content['id'] == $product['id']) && ($content['options'] == $product['options'])) {
 				$this->products[$prod]['quantity'] -= $product['quantity'];
-				if(($Quantity <= 0) || ($products[$prod]['quantity'] <= 0)){
+				if(($Quantity <= 0) || ($this->products[$prod]['quantity'] <= 0)){
 					unset($this->products[$prod]);
 				}
 			}
@@ -45,19 +45,34 @@ class Cart{
 	}
 	
 	public function render(){
-		$out = "";
-		if(isset($this->products)) {
+		$out = '<table class="pure-table pure-table-striped" >
+				<thead>
+					<tr>
+						<th>Anzahl</th>
+						<th>Name</th>
+						<th>Preis</th>
+						<th>Hinzufügen/Entfernen</th>
+					</tr>
+				</thead>
+				<tbody>';
+		if((isset($this->products)) && (count($this->products) > 0)) {
 			foreach ($this->products as $product) {
-				$out = $out . 'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
-				<form method="post" action="/index.php?action=warenkorb">
-				 <input type="submit" name="additem" value="+" />
-				</form>
-				
-				<form method="post" action="/index.php?action=warenkorb">
-				 <input type="submit" name="removeitem" value="-" />
-				</form>
-				 ';
+				$prodData = Product::getProductbyId($product['id']);
+				$out = $out . '<tr>
+				<td>'.$product["quantity"]. ' </td>
+				<td>'.$prodData->getName(). '  </td>
+				<td>'.$prodData->getPrice().' CHF </td>
+				<td><form method="post" class="pure-form" >
+				 <input type="hidden" name="id" value="'.$product['id'].'">
+				 <input type="hidden" name="quantity" value="1">
+				 <input type="hidden" name="options" value="'.$product['options'].'">
+				 <button type="button" class="addProduct pure-button">+</button>
+				 <button type="button" class="removeProduct pure-button">-</button>
+				</form></td>
+				</tr>';
 			}
+			$out = $out . '</tbody>
+			</table>';
 		}
 		else{
 			$out = "Keine Produkte im Warenkorb.";
@@ -66,21 +81,26 @@ class Cart{
 	}
 	
 	public function renderSidebar(){
-		$out = "";
-		if(isset($this->products)) {
+		$out = '<table class="pure-table pure-table-striped" >
+				<thead>
+				<tr>
+					<th>Anzahl</th>
+					<th>Name</th>
+					<th>Preis</th>
+				</tr>
+				</thead>
+				<tbody>';
+		if((isset($this->products)) && (count($this->products) > 0)) {
 			foreach ($this->products as $product) {
-				
-				$out = $out .  'Produkt '.$product["id"].' ist '.$product["quantity"].' mal im Warenkorb <br>
-				<form method="post" action="/index.php?action=warenkorb">
-				 <input type="submit" name="additem" value="+" />
-				</form>
-				
-				<form method="post" action="/index.php?action=warenkorb">
-				 <input type="submit" name="removeitem" value="-" />
-				</form>
-				 ';
-				 
-				 }
+				$prodData = Product::getProductbyId($product['id']);
+				$out = $out . '<tr>
+				<td>'.$product["quantity"]. ' </td>
+				<td>'.$prodData->getName(). '  </td>
+				<td>'.$prodData->getPrice().' CHF </td>
+				</tr>';
+			}
+			$out = $out . '</tbody>
+			</table>';
 		}
 		else{
 			$out = "Keine Produkte im Warenkorb.";
