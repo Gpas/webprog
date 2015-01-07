@@ -1,61 +1,4 @@
-<?php 
-	if(isset($_GET['confirmation']) && $_GET['confirmation'] == TRUE){
-		session_start();
-		echo '<h3>Bestellübersicht</h3>
-			<h4>Produkteliste</h4>
-			<table class="pure-table pure-table-horizontal" >
-			<thead>
-				<tr>
-					<th>ProdNr</th>
-					<th>Name</th>
-					<th>Preis</th>
-					<th>Anzahl</th>
-					<th>Total</th>
-				</tr>
-			</thead>
-			<tbody>
-			';
-		foreach ($_SESSION['cart'] as $product){
-			$result = DB::doQuery('SELECT * FROM products WHERE id="'.$product['id'].'"'); 
-			$row = $result->fetch_assoc();
-			$total = $product['quantity'] * $row['price'];
-			echo '
-				<tr>
-					<td>'.$product['id'].'</td>
-					<td>'.$row['name'].'</td>
-					<td>'.$row['price'].' CHF</td>
-					<td>'.$product['quantity'].'</td>
-					<td>'.$total.' CHF</td>
-				</tr>
-			';
-		}
-		$person = $_POST['person'];
-		echo '
-			</tbody>
-			</table>
-			<h4>Personenangaben</h4>
-			<h5>Lieferadresse</h5>
-			<address>
-				'.$person["anrede"].' <br>
-				'.$person["vorname"].' '.$person["nachname"].' <br>
-				'.$person["strasse"].' <br>
-				'.$person["plz"].' '.$person["ort"].'
-			</address>
-			<br>
-			E-Mailadresse: '.$person["email"].' <br>
-			Telefon: '.$person["telefon"].' <br>
-		';
-		if($_POST['bemerkung'] !== ""){
-			echo 'Bemerkung: '.$_POST['bemerkung'];
-		}
-		echo '
-			<h4>Zahlungsart</h4>
-			'.$_POST['zahlungsart'].'
-		';
-	}
-	else {
-		echo '
-<form class="pure-form pure-form-stacked" method="post" action="/index.php?action=bestellung&confirmation=TRUE">
+<form class="pure-form pure-form-stacked" method="post" action="/index.php?action=bestellung_confirmation">
 	<fieldset>
 		<legend>Personenangaben</legend>
 		<p>
@@ -113,6 +56,3 @@
 		<input class="pure-button pure-button-primary" type="submit" value="Weiter zur Bestellübersicht" />
 	</p>
 </form>
-		';
-	}
-?>

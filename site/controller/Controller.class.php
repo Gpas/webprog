@@ -20,6 +20,14 @@ class Controller {
 		
 	}
 	
+	public function bestellung_confirmation(Request $request) {
+		$this->data['person'] = $request->getParameter('person', '');
+		$this->data['bemerkung'] = $request->getParameter('bemerkung', '');
+		$this->data['zahlungsart'] = $request->getParameter('zahlungsart', '');
+		$cart = $_SESSION['cart'];
+		$this->data['products'] = $cart->getProducts();
+	}
+	
 	public function kontakt(Request $request) {
 		$this->data["message"] = "<h3>Kontaktadresse</h3>
 		<p>

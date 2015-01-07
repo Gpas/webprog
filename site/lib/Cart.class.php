@@ -108,6 +108,10 @@ class Cart{
 		return $out;
 	}
 	
+	public function getProducts(){
+		return $this->products;
+	}
+	
 }
 
 ?>
