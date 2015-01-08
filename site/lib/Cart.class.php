@@ -48,30 +48,41 @@ class Cart{
 		$out = '<table class="pure-table pure-table-striped" >
 				<thead>
 					<tr>
-						<th>Anzahl</th>
+						<th>Hinzufügen/Entfernen</th>
 						<th>Name</th>
 						<th>Preis</th>
-						<th>Hinzufügen/Entfernen</th>
+						<th>Anzahl</th>
+						<th>Total</th>
 					</tr>
 				</thead>
 				<tbody>';
+		$gesamttotal = 0;
 		if((isset($this->products)) && (count($this->products) > 0)) {
 			foreach ($this->products as $product) {
 				$prodData = Product::getProductbyId($product['id']);
+				$total = $product['quantity'] * $prodData->getPrice();
+				$gesamttotal = $gesamttotal + $total;
 				$out = $out . '<tr>
-				<td>'.$product["quantity"]. ' </td>
+				<td><form method="post" class="pure-form" >
+				<input type="hidden" name="id" value="'.$product['id'].'">
+				<input type="hidden" name="quantity" value="1">
+				<input type="hidden" name="options" value="'.$product['options'].'">
+				<button type="button" class="addProduct pure-button">+</button>
+				<button type="button" class="removeProduct pure-button">-</button>
+				</form></td>
 				<td>'.$prodData->getName(). '  </td>
 				<td>'.$prodData->getPrice().' CHF </td>
-				<td><form method="post" class="pure-form" >
-				 <input type="hidden" name="id" value="'.$product['id'].'">
-				 <input type="hidden" name="quantity" value="1">
-				 <input type="hidden" name="options" value="'.$product['options'].'">
-				 <button type="button" class="addProduct pure-button">+</button>
-				 <button type="button" class="removeProduct pure-button">-</button>
-				</form></td>
-				</tr>';
+				<td>'.$product["quantity"]. ' </td>
+				<td>'.$total.' CHF </td>';
 			}
 			$out = $out . '</tbody>
+			
+			<tfoot>
+			<tr>
+			<td colspan="5"> '.$gesamttotal.' CHF </td>
+			</tr>
+			</tfoot>
+			
 			</table>';
 		}
 		else{
@@ -86,20 +97,30 @@ class Cart{
 				<tr>
 					<th>Anzahl</th>
 					<th>Name</th>
-					<th>Preis</th>
+					<th>Total</th>
 				</tr>
 				</thead>
 				<tbody>';
+		$gesamttotal = 0;
 		if((isset($this->products)) && (count($this->products) > 0)) {
 			foreach ($this->products as $product) {
 				$prodData = Product::getProductbyId($product['id']);
+				$total = $product['quantity'] * $prodData->getPrice();
+				$gesamttotal = $gesamttotal + $total;
 				$out = $out . '<tr>
 				<td>'.$product["quantity"]. ' </td>
 				<td>'.$prodData->getName(). '  </td>
-				<td>'.$prodData->getPrice().' CHF </td>
+				<td>'.$total.' CHF </td>
 				</tr>';
 			}
 			$out = $out . '</tbody>
+			
+			<tfoot>
+			<tr>
+			<td colspan="5"> '.$gesamttotal.' CHF </td>
+			</tr>
+			</tfoot>
+			
 			</table>';
 		}
 		else{
