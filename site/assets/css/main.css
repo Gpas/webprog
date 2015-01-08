@@ -55,6 +55,8 @@ nav {
 
 aside {
 	float: right;
+	max-width: 450px;
+	overflow: hidden;
 	margin-left: 3%;
 }
 
@@ -143,6 +145,12 @@ article .productdetail {
 	width: 50%;
 	margin: 1.6%;
 }
+
+tfoot {
+	text-align: right;
+	font-weight: bold;
+	}
+
 	
 
 /* 

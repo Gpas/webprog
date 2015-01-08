@@ -11,11 +11,15 @@
 		<th>Total</th>
 	</tr>
 </thead>
+
 <tbody>
 <?php
+
+		$gesamttotal = 0;
 		foreach ($products as $product){
 			$result = Product::getProductbyId($product['id']); 
 			$total = $product['quantity'] * $result->getPrice();
+			$gesamttotal = $gesamttotal + $total;
 			echo '
 				<tr>
 					<td>'.$product['id'].'</td>
@@ -26,8 +30,21 @@
 				</tr>
 			';
 		}
+		
+		echo '
+		</tbody>
+		
+		<tfoot>
+		<tr>
+		<td colspan="5"> '.$gesamttotal.' CHF </td>
+		</tr>
+		</tfoot>
+		';
 ?>
-</tbody>
+
+
+
+
 </table>
 <h4>Personenangaben</h4>
 <h5>Lieferadresse</h5>
