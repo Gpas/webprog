@@ -36,7 +36,7 @@ CREATE TABLE `options` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `opt_values` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `options` (
 
 LOCK TABLES `options` WRITE;
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
-INSERT INTO `options` VALUES (1,'80%|90%|100%');
+INSERT INTO `options` VALUES (1,'80%|90%|100%'),(2,'Erdbeer|Mango|Käse');
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `options_lang` (
   PRIMARY KEY (`id`),
   KEY `options_id_idx` (`options_id`),
   CONSTRAINT `options_id` FOREIGN KEY (`options_id`) REFERENCES `options` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,8 +73,37 @@ CREATE TABLE `options_lang` (
 
 LOCK TABLES `options_lang` WRITE;
 /*!40000 ALTER TABLE `options_lang` DISABLE KEYS */;
-INSERT INTO `options_lang` VALUES (1,1,'de','Kakaoanteil');
+INSERT INTO `options_lang` VALUES (1,1,'de','Kakaoanteil'),(2,2,'de','Aromazusatz');
 /*!40000 ALTER TABLE `options_lang` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prod_opt`
+--
+
+DROP TABLE IF EXISTS `prod_opt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `prod_opt` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `prod_id` int(11) NOT NULL,
+  `option_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `prod_id_idx` (`prod_id`),
+  KEY `opt_id_idx` (`option_id`),
+  CONSTRAINT `opt_id` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `prod_id` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prod_opt`
+--
+
+LOCK TABLES `prod_opt` WRITE;
+/*!40000 ALTER TABLE `prod_opt` DISABLE KEYS */;
+INSERT INTO `prod_opt` VALUES (1,6,1),(2,6,2);
+/*!40000 ALTER TABLE `prod_opt` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -100,7 +129,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg',NULL),(2,'pralines',24.5,'pralinen.jpg',NULL),(3,'pralines',33.1,'pralinen.jpg',NULL),(6,'tafeln',12.5,'dunkleSchokolade.jpg','1|2|3'),(7,'tafeln',13.5,'weisseSchokolade.jpg',NULL),(8,'tafeln',13.5,'milchSchokolade.jpg',NULL),(9,'zutaten',1.5,'zucker.jpg',NULL),(10,'zutaten',5.5,'kakao.png',NULL),(11,'zubehoer',49,'mixer.jpg',NULL),(12,'zubehoer',8.1,'gabel.jpg',NULL);
+INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg',NULL),(2,'pralines',24.5,'pralinen.jpg',NULL),(3,'pralines',33.1,'pralinen.jpg',NULL),(6,'tafeln',12.5,'dunkleSchokolade.jpg','1,2,3'),(7,'tafeln',13.5,'weisseSchokolade.jpg',NULL),(8,'tafeln',13.5,'milchSchokolade.jpg',NULL),(9,'zutaten',1.5,'zucker.jpg',NULL),(10,'zutaten',5.5,'kakao.png',NULL),(11,'zubehoer',49,'mixer.jpg',NULL),(12,'zubehoer',8.1,'gabel.jpg',NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-07 15:16:24
+-- Dump completed on 2015-01-08 11:46:54

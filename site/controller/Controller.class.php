@@ -55,6 +55,7 @@ class Controller {
 		$id = $request->getParameter('produkt_id', '0');
 		$this->data["product"] = Product::getProductbyId($id);
 		$this->title = $this->data["product"]->getName();
+		$options = Option::getOptionsByProduct($id);
 	}
 	
 	public function warenkorb(Request $request) {

@@ -96,16 +96,3 @@ class Product {
 	}
 }
 ?>
-
-<script>
-	$(document).ready(function(){
-			$("#order").on("click", function(){
-					$.post("index.php?action=addProduct",
-					$(".orderProduct").serialize(),
-					function sucess(){
-						$("#warenkorb").load("index.php?action=renderSideCart");
-					}
-				);
-			});
-	})
-</script>
