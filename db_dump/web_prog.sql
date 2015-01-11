@@ -34,8 +34,13 @@ DROP TABLE IF EXISTS `options`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `options` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `options_id` int(11) NOT NULL,
+  `lang_code` varchar(2) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `opt_values` text NOT NULL,
-  PRIMARY KEY (`id`)
+  `prices` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `options_id_idx` (`options_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -45,36 +50,8 @@ CREATE TABLE `options` (
 
 LOCK TABLES `options` WRITE;
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
-INSERT INTO `options` VALUES (1,'80%|90%|100%'),(2,'Erdbeer|Mango|Käse');
+INSERT INTO `options` VALUES (1,1,'de','Kakaoanteil','80%|90%|100%','2|3|4'),(2,2,'de','Aromazusatz','Erdbeer|Orange|Käse','2|4|10');
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `options_lang`
---
-
-DROP TABLE IF EXISTS `options_lang`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `options_lang` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `options_id` int(11) NOT NULL,
-  `lang_code` varchar(2) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `options_id_idx` (`options_id`),
-  CONSTRAINT `options_id` FOREIGN KEY (`options_id`) REFERENCES `options` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `options_lang`
---
-
-LOCK TABLES `options_lang` WRITE;
-/*!40000 ALTER TABLE `options_lang` DISABLE KEYS */;
-INSERT INTO `options_lang` VALUES (1,1,'de','Kakaoanteil'),(2,2,'de','Aromazusatz');
-/*!40000 ALTER TABLE `options_lang` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -91,7 +68,7 @@ CREATE TABLE `prod_opt` (
   PRIMARY KEY (`id`),
   KEY `prod_id_idx` (`prod_id`),
   KEY `opt_id_idx` (`option_id`),
-  CONSTRAINT `opt_id` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `opt_id` FOREIGN KEY (`option_id`) REFERENCES `options` (`options_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `prod_id` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -196,4 +173,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-08 11:46:54
+-- Dump completed on 2015-01-11 14:43:56

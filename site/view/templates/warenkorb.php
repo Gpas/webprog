@@ -3,29 +3,31 @@
 		echo '
 		<script>
 			$(document).ready(function(){
+					//Sidebar Warenkorb löschen wenn man im Warenkorb ist.
+					var elem = document.getElementById("warenkorb");
+   					elem.parentNode.removeChild(elem);
 					$("#clearCart").on("click", function(){
 							$.post("index.php?action=clearCart",
 							function sucess(){
-								$("#warenkorb_gross").load("index.php?action=renderCart");
-								$("#warenkorb").load("index.php?action=renderSideCart");
+								location.reload();
 							}
 						);
 					});
-					$("#warenkorb_gross").on("click", ".addProduct", function(){
-							$.post("index.php?action=addProduct",
+					$("#warenkorb_gross").on("click", ".addItem", function(){
+							$.post("index.php?action=addItem",
 							$(this).parent().serialize(),
-							function sucess(){
-								$("#warenkorb_gross").load("index.php?action=renderCart");
-								$("#warenkorb").load("index.php?action=renderSideCart");
+							function sucess(data){
+								data = JSON.parse(data);
+								$("#warenkorb_gross").html(data.render);
 							}
 						);
 					});
-					$("#warenkorb_gross").on("click", ".removeProduct", function(){
-							$.post("index.php?action=removeProduct",
+					$("#warenkorb_gross").on("click", ".removeItem", function(){
+							$.post("index.php?action=removeItem",
 							$(this).parent().serialize(),
-							function sucess(){
-								$("#warenkorb_gross").load("index.php?action=renderCart");
-								$("#warenkorb").load("index.php?action=renderSideCart");
+							function sucess(data){
+								data = JSON.parse(data);
+								$("#warenkorb_gross").html(data.render);
 							}
 						);
 					});
@@ -58,7 +60,12 @@
 <button type="button" class="pure-button" name="clearCart" id="clearCart">Warenkorb leeren</button>
 
 <form method="post" action="/index.php?action=bestellung">
-	<input class="pure-button pure-button-primary button-xlarge" type="submit" value="Bestellen"  />
+	<input class="pure-button pure-button-primary button-xlarge" type="submit" value="Bestellen" <?php 
+		if(count($cart->getProducts()) <= 0){
+			echo "disabled" ;
+		} 
+	?> />
 </form>
+
 
 

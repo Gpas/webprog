@@ -1,1 +1,0 @@
-	<?php echo isset($message) ? "<h5>".$message."</h5>" : ""; ?>

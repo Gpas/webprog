@@ -19,12 +19,6 @@
 	    </ul>
 	</aside>
 	<article id="mainArticle">
-		<section id="location">
-			<?php
-				/* Muss noch angepasst werden. 
-				Location muss hier eingefügt werden */
-			?>
-		</section>
 		<section id="content" >
 			<?php include($innerTpl) ?>
 		</section>

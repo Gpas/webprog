@@ -5,8 +5,9 @@
 					$(".order").on("click", function(){
 							$.post("index.php?action=addProduct",
 							$(this).parent().serialize(),
-							function sucess(){
-								$("#warenkorb").load("index.php?action=renderSideCart");
+							function sucess(data){
+								data = JSON.parse(data);
+								$("#warenkorb").html(data.sidebar);
 							}
 						);
 					});
@@ -23,14 +24,18 @@
 				<section class="price">
 				Preis: '.$product->getPrice().' CHF
 				</section>
-	 			<form class="orderProduct" method="post" >
-					<select name="quantity">';
+	 			<form class="orderProduct pure-form" method="post" >
+					<section class="count"><label>Anzahl<select name="quantity">';
 		for ($i=1; $i <= 10 ; $i++) { 
 			echo '<option value="'.$i.'">'.$i.'</option>';
 		}
-		echo '</select>
-				<input type="hidden" name="id" value='.$product->getId().' />
-				<button class="order" name="addProduct" type="button">Bestellen</button>
+		echo '</select></label></section>';
+		foreach($options as $option){
+			echo $option->render();
+		}
+		echo '	<input type="hidden" name="id" value='.$product->getId().' />
+				<br>
+				<button class="order pure-button pure-button-primary" name="addProduct" type="button">In den Warenkorb</button>
 				</form>
 				</article>';
 ?>

@@ -3,6 +3,7 @@
 class Cart{
 	
 	private $products;
+	private $item_count = 0;
 	
 	public function __construct() {
 		session_start();
@@ -16,29 +17,46 @@ class Cart{
 		$this->products = array();
 	}
 	
+	public function reload(){
+		foreach($this->products as $product){
+			$product->reload();
+		}
+	}
+	
 	public function addProduct($Id, $Quantity="1", $Options="-1"){
 		$duplicate = FALSE;
 		$product = array('id' => $Id, 'quantity' => $Quantity, 'options' => $Options);
-		if(count($this->products)> 0){
-			foreach ($this->products as $prod => $content){
-				if (($content['id'] == $product['id']) && ($content['options'] == $product['options'])) {
-					$this->products[$prod]['quantity'] += $product['quantity'];
+		if(count($this->products) > 0){
+			foreach ($this->products as $id => $item){
+				if (($item->getProduct()->getId() == $product['id']) && ($item->getOptions() == $product['options'])) {
+					$this->products[$id]->addAmount($product['quantity']);
 					$duplicate = TRUE;
 				}
 			}
 		}
 		if (!$duplicate) {
-			$this->products[] = $product;
+			$this->products[] = new item($product['id'], $product['quantity'], $product['options']);
 		}
 	}
 	
-	public function removeProduct($Id, $Quantity="1", $Options="-1"){
-		$product = array('id' => $Id, 'quantity' => $Quantity, 'options' => $Options);
-		foreach ($this->products as $prod => $content){
-			if (($content['id'] == $product['id']) && ($content['options'] == $product['options'])) {
-				$this->products[$prod]['quantity'] -= $product['quantity'];
-				if(($Quantity <= 0) || ($this->products[$prod]['quantity'] <= 0)){
-					unset($this->products[$prod]);
+	public function addItem($item_id){
+		if(count($this->products) > 0){
+			foreach ($this->products as $id => $item){
+				if ($item->getId() == $item_id) {
+					$this->products[$id]->addAmount(1);
+				}
+			}
+		}
+	}
+	
+	public function removeItem($item_id){
+		if(count($this->products) > 0){
+			foreach ($this->products as $id => $item){
+				if ($item->getId() == $item_id) {
+					$this->products[$id]->addAmount(-1);
+					if($this->products[$id]->getQuantity() <= 0){
+						unset($this->products[$id]);
+					}
 				}
 			}
 		}
@@ -58,22 +76,20 @@ class Cart{
 				<tbody>';
 		$gesamttotal = 0;
 		if((isset($this->products)) && (count($this->products) > 0)) {
-			foreach ($this->products as $product) {
-				$prodData = Product::getProductbyId($product['id']);
-				$total = $product['quantity'] * $prodData->getPrice();
+			foreach ($this->products as $item) {
+				$product = $item->getProduct();
+				$total = $item->getTotal();
 				$gesamttotal = $gesamttotal + $total;
 				$out = $out . '<tr>
 				<td><form method="post" class="pure-form" >
-				<input type="hidden" name="id" value="'.$product['id'].'">
-				<input type="hidden" name="quantity" value="1">
-				<input type="hidden" name="options" value="'.$product['options'].'">
-				<button type="button" class="addProduct pure-button">+</button>
-				<button type="button" class="removeProduct pure-button">-</button>
+				<input type="hidden" name="id" value="'.$item->getId().'">
+				<button type="button" class="addItem pure-button">+</button>
+				<button type="button" class="removeItem pure-button">-</button>
 				</form></td>
-				<td>'.$prodData->getName(). '  </td>
-				<td>'.$prodData->getPrice().' CHF </td>
-				<td>'.$product["quantity"]. ' </td>
-				<td>'.$total.' CHF </td>';
+				<td>'.$product->getName(). '  </td>
+				<td>'.$item->getPrice().' CHF </td>
+				<td>'.$item->getQuantity(). ' </td>
+				<td>'.$total.' CHF </td>' ;
 			}
 			$out = $out . '</tbody>
 			
@@ -103,13 +119,13 @@ class Cart{
 				<tbody>';
 		$gesamttotal = 0;
 		if((isset($this->products)) && (count($this->products) > 0)) {
-			foreach ($this->products as $product) {
-				$prodData = Product::getProductbyId($product['id']);
-				$total = $product['quantity'] * $prodData->getPrice();
+			foreach ($this->products as $item) {
+				$product = $item->getProduct();
+				$total = $item->getTotal();
 				$gesamttotal = $gesamttotal + $total;
 				$out = $out . '<tr>
-				<td>'.$product["quantity"]. ' </td>
-				<td>'.$prodData->getName(). '  </td>
+				<td>'.$item->getQuantity(). ' </td>
+				<td>'.$product->getName(). '  </td>
 				<td>'.$total.' CHF </td>
 				</tr>';
 			}
@@ -131,6 +147,10 @@ class Cart{
 	
 	public function getProducts(){
 		return $this->products;
+	}
+	
+	public function getNextItemId(){
+		return $this->item_count++;
 	}
 	
 }
