@@ -102,6 +102,8 @@ aside {
 
 footer {
 	clear: both;
+	text-align: center;
+	padding: 20px;
 	background: darkgray;
 	margin-top: 200px;
 }

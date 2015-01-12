@@ -27,6 +27,12 @@ class Controller {
 		$this->data['products'] = $cart->getProducts();
 	}
 	
+	public function abschicken(Request $request) {
+		$this->data["message"] = "Vielen Dank für ihre Bestellung, welche nicht bearbeitet wird.";
+		$_SESSION['cart']->reset();
+		return "home";
+	}
+	
 	public function kontakt(Request $request) {
 		$this->data["message"] = "<h3>Kontaktadresse</h3>
 		<p>

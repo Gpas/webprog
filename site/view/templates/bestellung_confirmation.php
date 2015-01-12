@@ -17,15 +17,14 @@
 
 		$gesamttotal = 0;
 		foreach ($products as $product){
-			$result = Product::getProductbyId($product['id']); 
-			$total = $product['quantity'] * $result->getPrice();
+			$total = $product->getTotal();
 			$gesamttotal = $gesamttotal + $total;
 			echo '
 				<tr>
-					<td>'.$product['id'].'</td>
-					<td>'.$result->getName().'</td>
-					<td>'.$result->getPrice().' CHF</td>
-					<td>'.$product['quantity'].'</td>
+					<td>'.$product->getProduct()->getId().'</td>
+					<td>'.$product->getProduct()->getName().'</td>
+					<td>'.$product->getPrice().' CHF</td>
+					<td>'.$product->getQuantity().'</td>
 					<td>'.$total.' CHF</td>
 				</tr>
 			';
@@ -65,4 +64,41 @@
 			<h4>Zahlungsart</h4>
 			'.$zahlungsart.'
 		';
+		
 ?>
+
+
+
+<br>
+<button type="button" id="opener" class="pure-button pure-button-primary">Abschicken </button>
+
+<div id="dialog" title="AGB Zustimmung">
+	<p>Damit der Kaufvorgang abgeschlossen werden kann, müssen Sie den AGB zustimmen.</p>
+</div>
+
+<script>
+	$(function() {
+		$("#dialog").dialog({
+			autoOpen: false,
+			modal: true,
+			buttons: [
+				{
+					text: "Zustimmen",
+					click:	function(){
+						$(this).dialog("close");
+						location.replace("index.php?action=abschicken");
+					}			
+				},
+				{
+					text: "Abbrechen",
+					click:	function(){
+						$(this).dialog("close");	
+					}		
+				}
+			]
+		});
+		$( "#opener" ).click(function() {
+      		$( "#dialog" ).dialog( "open" );
+    	});
+	});	
+</script>
