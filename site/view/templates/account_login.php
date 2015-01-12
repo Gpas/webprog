@@ -7,4 +7,6 @@
 		<p><label>Password</label> <input type="password" name="pw"></p>
 		<p><input class="pure-button pure-button-primary" type="submit" value="Login"></p>
 	</form>
+	<br>
+	<a href="index.php?action=account_register">Noch kein Account? Klicke hier!</a>
 	

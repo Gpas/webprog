@@ -88,6 +88,22 @@ class Controller {
 		}
 	}
 	
+	public function account_register(Request $request){
+		
+	}
+	
+	public function createAccount(Request $request){
+		$pw = $request->getParameter("pw", null);
+		$name = $request->getParameter("login", null);
+		if(User::create($name, $pw)){
+			return $this->internalRedirect("login", $request);
+		}
+		else{
+			$this->data['message'] = "Dieser Benutzername wird schon verwendet";
+			return "account_register";
+		}
+	}
+	
 	public function login(Request $request) {
 		$login = $request->getParameter('login', '');
 		$pw = $request->getParameter('pw', '');
@@ -98,9 +114,7 @@ class Controller {
 		}
 		$this->startSession();
 		$_SESSION['user'] = $user;
-		$this->data['message'] = "Du bist eingeloggt als ".$user->getName()."!";
-		return "account";	
-		
+		return $this->internalRedirect("account", $request);		
 	}
 		
 	public function logout(Request $request) {

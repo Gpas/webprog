@@ -51,8 +51,9 @@ class Product {
 	//functions
 	
 	// NOT USED
-	public static function getProducts($orderBy="id", $lang_code="de"){
+	public static function getProducts($orderBy="id"){
 		$orderByStr = '';
+		$lang_code = $_COOKIE['lang'];
 		if (in_array($orderBy, ['id', 'price', 'name', 'description']) ) {
 			$orderByStr = " ORDER BY $orderBy";
 		}
@@ -66,13 +67,15 @@ class Product {
 		return $products;
 	}
 	
-	public static function getProductbyId($Id, $lang_code="de") {
+	public static function getProductbyId($Id) {
+		$lang_code = $_COOKIE['lang'];
 		$res = DB::doQuery("SELECT p.*, l.name AS 'name', l.description AS 'description' FROM products p LEFT OUTER JOIN products_lang l ON p.id = l.product_id WHERE p.id = '$Id' AND l.lang_code = '$lang_code' ");
 		$product = $res->fetch_object(get_class());
 		return $product;
 	}
 	
-	public static function getProductsbyCat($cat, $orderBy="id", $lang_code="de"){
+	public static function getProductsbyCat($cat, $orderBy="id"){
+		$lang_code = $_COOKIE['lang'];
 		$orderByStr = '';
 		if (in_array($orderBy, ['id', 'price', 'name', 'description']) ) {
 			$orderByStr = " ORDER BY $orderBy";
