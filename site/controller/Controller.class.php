@@ -34,7 +34,7 @@ class Controller {
 		SchoggiShop GmbH <br>
 		Hauptstrasse 23 <br>
 		3000 Bern <br>
-		Email: info@schoggishop.ch 
+		Email: info@schoggishop.ch
 		</p>";
 	}
 	
