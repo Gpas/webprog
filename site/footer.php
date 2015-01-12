@@ -1,1 +1,1 @@
-<footer>Footer</footer>
+<footer>&copy; Copyright Schoggishop GmbH</footer>
