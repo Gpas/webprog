@@ -1,5 +1,9 @@
 <header>
 	<img id="logo" src="/assets/images/logo.png" />
+	<div id="lang">
+		<button type="button" class="pure-button langBtn">de</a>
+		<button type="button" class="pure-button langBtn">en</a>
+	</div>
 	<div id="slider">
 		<div class="sliderQuery">
 			<a href = "index.php?action=produktansicht&produkt_id=6">
@@ -20,6 +24,14 @@
 		dots: true,
 		arrows: false,
 		fade: true
+	});
+	$(".langBtn").on("click", function(){
+		$.post(
+			"index.php?action=changeLang&lang=" + $(this).html(),
+			function sucess(){
+				location.reload();
+			}
+		);
 	});
 	});
 </script>

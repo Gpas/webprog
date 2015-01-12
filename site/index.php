@@ -12,7 +12,17 @@
 	}
 	
 	// Init cart
-	$cart = new Cart();
+	new Cart();
+	
+	// Init language
+	if(isset($_COOKIE['lang'])){
+		new Lang($_COOKIE['lang']);
+	}
+	else{
+		new Lang();
+	}
+		
+
 		
 	try {
 		// Create controller

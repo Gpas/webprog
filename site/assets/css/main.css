@@ -1,7 +1,5 @@
-/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
-h1 {
+/*h1 {
 	font-size: 3em;
 	margin: 15px 0 30px;
 }
@@ -24,7 +22,7 @@ h4 {
 h5 {
 	font-size: 1.2em;
 	margin: 10px 0 5px;
-}
+}*/
 
 header {
 	width: 100%;
@@ -32,9 +30,39 @@ header {
 
 #logo {
 	float: left;
-	width: 300px;
 	margin: 35px;
 	margin-top: 50px;
+	width: 20%;
+	max-width: 320px;
+}
+
+/* 
+ ****** Slider ******
+ * */
+
+#slider {
+  	width: 50%;
+	padding: 25px 30px;
+	padding-top: 25px;
+	border: 4px rgb(115,73,10) solid;
+	border-radius: 10px;
+	margin: 20px 25%;
+}
+
+#slider img,a {
+	width: 100%;
+	max-height: 200px;
+}
+
+/******/
+
+#lang {
+	float: right;
+	margin-right: 20px;
+}
+
+#lang button{
+	margin: 10px;
 }
 
 main {
@@ -69,10 +97,6 @@ aside {
 }
 
 #content {
-	background: inherit;
-}
-
-#location {
 	background: inherit;
 }
 
@@ -151,23 +175,20 @@ tfoot {
 	font-weight: bold;
 	}
 
-	
-
-/* 
- ****** Slider ******
- * */
-
-#slider {
-  	width: 50%;
-	padding: 25px 30px;
-	padding-top: 25px;
-	border: 4px rgb(115,73,10) solid;
-	border-radius: 10px;
-	margin: 20px 25%;
+.count {
+	padding: 0.5em 0 0.5em;
 }
 
-#slider img,a {
-	width: 100%;
-	max-height: 200px;
+.count select {
+	margin-left: 0.5em;
+}
+
+.pure-radio {
+	display: inline !important;
+	padding-right: 1.5em;
+}
+
+.pure-form input[type="radio"] {
+	margin-right: 0.1em;
 }
 

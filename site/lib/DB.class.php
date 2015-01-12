@@ -5,6 +5,7 @@ class DB extends mysqli{
 	
 	static public function create($host, $user, $pw, $dbname) {
 		@self::$instance = new DB($host, $user, $pw, $dbname);
+		self::doQuery("SET NAMES 'utf8'");
 		return self::$instance->connect_errno == 0;
 	}
 	

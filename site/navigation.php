@@ -36,7 +36,6 @@
 						}
 						foreach($nav as $element){
 							$name = substr($element[1], strpos($element[1], "action=")+7);
-							//ChromePhp::log("".$name." ".$_GET['page']."");
 							if((!isset($_GET['action'])) && ($element[0] == "Home")){
 								echo '<li><a class="active" href="'.$element[1].'">'.$element[0].'</a></li>';
 							}

@@ -9,15 +9,14 @@ class Controller {
 	// A C T I O N S
 	
 	public function home(Request $request) {
-		$this->data["message"] = "<h1>Willkommen im Schoggi Shop</h1>
+		$this->data["message"] = "<h1>".$_SESSION['lang']->getText("welcome_title")."</h1>
 		<p>
-		Hier kannst du all deine Schoggi Wünsche erfüllen! 
-		Und das ganze ohne Versandkosten und extra schneller Lieferung.
+		".$_SESSION['lang']->getText("welcome_message")."
 		</p>";
 	}
 	
 	public function bestellung(Request $request) {
-		
+
 	}
 	
 	public function bestellung_confirmation(Request $request) {
@@ -55,7 +54,7 @@ class Controller {
 		$id = $request->getParameter('produkt_id', '0');
 		$this->data["product"] = Product::getProductbyId($id);
 		$this->title = $this->data["product"]->getName();
-		$options = Option::getOptionsByProduct($id);
+		$this->data["options"] = Option::getOptionsByProduct($id);
 	}
 	
 	public function warenkorb(Request $request) {
@@ -114,38 +113,43 @@ class Controller {
 	public function addProduct(Request $request){
 		$id = $request->getParameter('id','null');
 		$quantity = $request->getParameter('quantity','1');
-		$options = $request->getParameter('options','-1');
+		$options = $request->getParameter('options', '-1');
 		$cart = $_SESSION['cart'];
+		if(is_string($options) && $options != "-1"){
+			$options = unserialize($options);
+		}
 		$cart->addProduct($id, $quantity, $options);
+		echo json_encode(array("sidebar" => $cart->renderSidebar()));
 		return "noView";
 	}
 	
-	public function removeProduct(Request $request){
+	public function removeItem(Request $request){
 		$id = $request->getParameter('id','null');
-		$quantity = $request->getParameter('quantity','1');
-		$options = $request->getParameter('options','-1');
 		$cart = $_SESSION['cart'];
-		$cart->removeProduct($id, $quantity, $options);
+		$cart->removeItem($id);
+		echo json_encode(array("render" => $cart->render()));
 		return "noView";
 	}
 	
-	public function renderSideCart(Request $request){
+	public function addItem(Request $request){
+		$id = $request->getParameter('id','null');
 		$cart = $_SESSION['cart'];
-		echo $cart->renderSidebar();
-		return "noView";
-	}
-	
-	public function renderCart(Request $request){
-		$cart = $_SESSION['cart'];
-		echo $cart->render();
+		$cart->addItem($id);
+		echo json_encode(array("render" => $cart->render()));
 		return "noView";
 	}
 	
 	public function clearCart(Request $request){
-		unset($_SESSION['cart']);
+		$_SESSION['cart']->reset();
 		return "noView";
 	}
 	
+	public function changeLang(Request $request){
+		unset($_SESSION['lang']);
+		new Lang($request->getParameter('lang', 'de'));
+		$_SESSION['cart']->reload();
+		return "noView";
+	}
 	
 	public function __call($function, $args) {
 		throw new Exception("The action '$function' does not exist!");
