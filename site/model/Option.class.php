@@ -42,8 +42,8 @@ class Option {
 	public static function getOptionsByProduct($productId) {
 		$langCode = $_COOKIE['lang'];
 		$options = array();
-		$res = DB::doQuery("SELECT o.id AS id, o.opt_values AS 'values' , o.name AS name, o.prices AS prices FROM options o 
-		WHERE o.lang_code = '$langCode' AND o.id IN (SELECT p.option_id FROM prod_opt p WHERE p.prod_id = '$productId')");	
+		$res = DB::doQuery("SELECT o.options_id AS id, o.opt_values AS 'values' , o.name AS name, o.prices AS prices FROM options o 
+		WHERE o.lang_code = '$langCode' AND o.options_id IN (SELECT p.option_id FROM prod_opt p WHERE p.prod_id = '$productId')");	
 		if ($res) {
 			while ($option = $res->fetch_object(get_class())) {
 				$option->setValues(explode("|",$option->getValues()));
