@@ -41,7 +41,7 @@ CREATE TABLE `options` (
   `prices` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `options_id_idx` (`options_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `options` (
 
 LOCK TABLES `options` WRITE;
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
-INSERT INTO `options` VALUES (1,1,'de','Kakaoanteil','80%|90%|100%','2|3|4'),(2,2,'de','Aromazusatz','Erdbeer|Orange|Käse','2|4|10');
+INSERT INTO `options` VALUES (1,1,'de','Kakaoanteil','80%|90%|100%','2|3|4'),(2,2,'de','Aromazusatz','Erdbeer|Orange|Käse','2|4|10'),(3,3,'de','Geschmacksrichtung','Weiss|Schwarz|Milch','0|0|0'),(4,3,'de','Geschmacksrichtung','Weiss|Schwarz|Milch','0|0|0'),(5,1,'en','cocoa','80%|90%|100%','2|3|4'),(6,2,'de','flavor','Strawberry|Orange|Cheese','2|4|10');
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +70,7 @@ CREATE TABLE `prod_opt` (
   KEY `opt_id_idx` (`option_id`),
   CONSTRAINT `opt_id` FOREIGN KEY (`option_id`) REFERENCES `options` (`options_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `prod_id` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `prod_opt` (
 
 LOCK TABLES `prod_opt` WRITE;
 /*!40000 ALTER TABLE `prod_opt` DISABLE KEYS */;
-INSERT INTO `prod_opt` VALUES (1,6,1),(2,6,2);
+INSERT INTO `prod_opt` VALUES (1,6,1),(2,6,2),(3,13,3),(4,14,3);
 /*!40000 ALTER TABLE `prod_opt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,7 @@ CREATE TABLE `products` (
   `img` varchar(100) NOT NULL,
   `options` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg',NULL),(2,'pralines',24.5,'pralinen.jpg',NULL),(3,'pralines',33.1,'pralinen.jpg',NULL),(6,'tafeln',12.5,'dunkleSchokolade.jpg','1,2,3'),(7,'tafeln',13.5,'weisseSchokolade.jpg',NULL),(8,'tafeln',13.5,'milchSchokolade.jpg',NULL),(9,'zutaten',1.5,'zucker.jpg',NULL),(10,'zutaten',5.5,'kakao.png',NULL),(11,'zubehoer',49,'mixer.jpg',NULL),(12,'zubehoer',8.1,'gabel.jpg',NULL);
+INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg',NULL),(2,'pralines',24.5,'pralinen.jpg',NULL),(3,'pralines',33.1,'pralinen.jpg',NULL),(6,'tafeln',12.5,'dunkleSchokolade.jpg','1,2,3'),(7,'tafeln',13.5,'weisseSchokolade.jpg',NULL),(8,'tafeln',13.5,'milchSchokolade.jpg',NULL),(9,'zutaten',1.5,'zucker.jpg',NULL),(10,'zutaten',5.5,'kakao.png',NULL),(11,'zubehoer',49,'mixer.jpg',NULL),(12,'zubehoer',8.1,'gabel.jpg',NULL),(13,'pralines',9.5,'Eierlikoer.jpg',NULL),(14,'pralines',10.5,'Marzipan.jpg',NULL),(15,'pralines',11,'Baileys.jpg',NULL),(16,'pralines',8,'Amarettini.jpg',NULL),(17,'zubehoer',390,'cow.jpg',NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +126,7 @@ CREATE TABLE `products_lang` (
   PRIMARY KEY (`id`),
   KEY `product_id_idx` (`product_id`),
   CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +135,7 @@ CREATE TABLE `products_lang` (
 
 LOCK TABLES `products_lang` WRITE;
 /*!40000 ALTER TABLE `products_lang` DISABLE KEYS */;
-INSERT INTO `products_lang` VALUES (1,1,'de','Testprodukt','Testbeschreibung'),(2,2,'de','Testprodukt 2','Testbeschreibung 2'),(3,3,'de','TestProdukt 3','bla bla bla bla'),(6,6,'de','Dunkle Schokolade','Feinste dunkle Schokolade in 3 verschiedenen Varianten'),(7,7,'de','Weisse Schokolade','Feinste weisse Schokolade'),(8,8,'de','Milchschokolade','Feinste Milchschokolade'),(9,9,'de','Zucker (1kg)',' Feinkristallzucker 1Kg'),(10,10,'de','Kakaopulvver','Dr. Oetker Kakao zum Backen eignet sich besonders für Ihre Backrezepte. Das vollmundige Aroma und die rötlich dunkle Farbe garantieren ein hervorragendes Backergebnis. Ideal auch für die Zubereitung von köstlichen Desserts und Trinkschokolade.'),(11,11,'de','450 Watt Mixer','(450 Watt, 5 Geschwindigkeitsstufen) weiss'),(12,12,'de','Gabel','Eine Gabel');
+INSERT INTO `products_lang` VALUES (6,6,'de','Dunkle Schokolade','Feinste dunkle Schokolade in 3 verschiedenen Varianten'),(7,7,'de','Weisse Schokolade','Feinste weisse Schokolade'),(8,8,'de','Milchschokolade','Feinste Milchschokolade'),(9,9,'de','Zucker (1kg)',' Feinkristallzucker 1Kg'),(10,10,'de','Kakaopulvver','Dr. Oetker Kakao zum Backen eignet sich besonders für Ihre Backrezepte. Das vollmundige Aroma und die rötlich dunkle Farbe garantieren ein hervorragendes Backergebnis. Ideal auch für die Zubereitung von köstlichen Desserts und Trinkschokolade.'),(11,11,'de','450 Watt Mixer','(450 Watt, 5 Geschwindigkeitsstufen) weiss'),(12,12,'de','Gabel','Eine Gabel'),(13,13,'de','Eierlikör (12 Stk.)','Feinste Eierlikör Pralinen in 3 verschiedenen Varianten'),(14,14,'de','Marzipan (12 Stk.)','Feinste Marzipan Pralinen in 3 verschiedenen Varianten'),(15,15,'de','Baileys (12 Stk.)','Feinste Baileys Pralinen'),(16,16,'de','Amarettini (12 Stk.)','Feinste Amarettini Pralinen'),(17,17,'de','Eine Kuh','Damit die beste Schokolade entsteht, benötigen Sie frische Milch.'),(18,6,'en','dark chocolate','The finest dark chocolate in 3 different variants');
 /*!40000 ALTER TABLE `products_lang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,4 +173,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-11 14:43:56
+-- Dump completed on 2015-01-12 14:59:52

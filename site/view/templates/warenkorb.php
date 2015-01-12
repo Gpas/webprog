@@ -1,6 +1,3 @@
-
-<?php
-		echo '
 		<script>
 			$(document).ready(function(){
 					//Sidebar Warenkorb löschen wenn man im Warenkorb ist.
@@ -33,9 +30,9 @@
 					});
 			});
 		</script>
-		';
+		
 	
-?>
+
 
 <style scoped>
 
