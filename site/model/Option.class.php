@@ -30,6 +30,9 @@ class Option {
 	public function setValues($values){
 		$this->values = $values;
 	}
+	public function setPrices($prices){
+		$this->prices = $prices;
+	}
 	
 	public function setSelected($id){
 		$this->selected = $id;
@@ -43,6 +46,8 @@ class Option {
 		WHERE o.lang_code = '$langCode' AND o.id IN (SELECT p.option_id FROM prod_opt p WHERE p.prod_id = '$productId')");	
 		if ($res) {
 			while ($option = $res->fetch_object(get_class())) {
+				$option->setValues(explode("|",$option->getValues()));
+				$option->setPrices(explode("|",$option->getPrices()));
 				$options[] = $option;
 			}
 		}
@@ -51,8 +56,7 @@ class Option {
 
 	}
 	
-	public function getPrice(){
-		$values = explode("|",$this->getPrices());
+	public function getValue(){
 		if(isset($this->selected)){
 			return $values[$this->selected];
 		}
@@ -61,12 +65,20 @@ class Option {
 		}
 	}
 	
+	public function getPrice(){
+		if(isset($this->selected)){
+			return $prices[$this->selected];
+		}
+		else{
+			return 0 ;
+		}
+	}
+	
 	public function render(){
-		$values = explode("|",$this->getValues());
 		$out = '<fieldset class="options"><legend>'.$this->getName().'</legend>';
-		for($i = 0; $i < count($values); $i++ )
+		for($i = 0; $i < count($this->values); $i++ )
 		{
-			$out = $out . '<label class="pure-radio"><input type="radio" name="options['.$this->getId().']" value="'.$i.'">'.$values[$i].'</label>'; 
+			$out = $out . '<label class="pure-radio"><input type="radio" name="options['.$this->getId().']" value="'.$i.'">'.$this->values[$i].'</label>'; 
 		}
 		$out = $out . '</fieldset>';
 		return $out;

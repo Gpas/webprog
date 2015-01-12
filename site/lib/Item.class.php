@@ -41,13 +41,7 @@ class item{
 	}
 	
 	public function getOptions(){
-		if((isset($this->options)) && (is_array($this->options))){
-			foreach($this->options as $option){
-				$options[$option->getId()] = $option->getSelected();
-			}
-		}
-		
-		return isset($options) ? $options : -1;
+		return $this->options;
 	}
 	
 	public function getId(){
