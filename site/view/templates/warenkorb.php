@@ -54,7 +54,12 @@
 
 <section id="warenkorb_gross"><?php echo $cart->render();?></section>
 
-<button type="button" class="pure-button" name="clearCart" id="clearCart">Warenkorb leeren</button>
+<button type="button" class="pure-button" name="clearCart" id="clearCart"
+<?php 
+		if(count($cart->getProducts()) <= 0){
+			echo "disabled" ;
+		} 
+	?>>Warenkorb leeren</button>
 
 <form method="post" action="/index.php?action=bestellung">
 	<input class="pure-button pure-button-primary button-xlarge" type="submit" value="Bestellen" <?php 

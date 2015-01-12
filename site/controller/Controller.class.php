@@ -61,6 +61,7 @@ class Controller {
 		$this->data["product"] = Product::getProductbyId($id);
 		$this->title = $this->data["product"]->getName();
 		$this->data["options"] = Option::getOptionsByProduct($id);
+		echo var_dump($this->data["options"]);
 	}
 	
 	public function warenkorb(Request $request) {
