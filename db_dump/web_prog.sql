@@ -50,7 +50,7 @@ CREATE TABLE `options` (
 
 LOCK TABLES `options` WRITE;
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
-INSERT INTO `options` VALUES (1,1,'de','Kakaoanteil','80%|90%|100%','2|3|4'),(2,2,'de','Aromazusatz','Erdbeer|Orange|Käse','2|4|10'),(3,3,'de','Geschmacksrichtung','Weiss|Schwarz|Milch','0|0|0'),(5,1,'en','cocoa','80%|90%|100%','2|3|4'),(6,2,'de','flavor','Strawberry|Orange|Cheese','2|4|10');
+INSERT INTO `options` VALUES (1,1,'de','Kakaoanteil','80%|90%|100%','2|3|4'),(2,2,'de','Aromazusatz','Erdbeer|Orange|Käse','2|4|10'),(3,3,'de','Geschmacksrichtung','Weiss|Schwarz|Milch','0|0|0'),(5,1,'en','cocoa','80%|90%|100%','2|3|4'),(6,2,'en','flavor','Strawberry|Orange|Cheese','2|4|10');
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,4 +173,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-12 15:25:57
+-- Dump completed on 2015-01-12 15:49:09
