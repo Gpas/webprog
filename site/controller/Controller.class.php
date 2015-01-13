@@ -128,46 +128,6 @@ class Controller {
 		return "home";
 	}
 	
-	public function addProduct(Request $request){
-		$id = $request->getParameter('id','null');
-		$quantity = $request->getParameter('quantity','1');
-		$options = $request->getParameter('options', '-1');
-		$cart = $_SESSION['cart'];
-		/*if(is_string($options) && $options != "-1"){
-			$options = unserialize($options);
-		}*/
-		$cart->addProduct($id, $quantity, $options);
-		echo json_encode(array("sidebar" => $cart->renderSidebar()));
-		return "noView";
-	}
-	
-	public function removeItem(Request $request){
-		$id = $request->getParameter('id','null');
-		$cart = $_SESSION['cart'];
-		$cart->removeItem($id);
-		echo json_encode(array("render" => $cart->render()));
-		return "noView";
-	}
-	
-	public function addItem(Request $request){
-		$id = $request->getParameter('id','null');
-		$cart = $_SESSION['cart'];
-		$cart->addItem($id);
-		echo json_encode(array("render" => $cart->render()));
-		return "noView";
-	}
-	
-	public function clearCart(Request $request){
-		$_SESSION['cart']->reset();
-		return "noView";
-	}
-	
-	public function changeLang(Request $request){
-		unset($_SESSION['lang']);
-		new Lang($request->getParameter('lang', 'de'));
-		$_SESSION['cart']->reload();
-		return "noView";
-	}
 	
 	public function __call($function, $args) {
 		throw new Exception("The action '$function' does not exist!");

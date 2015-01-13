@@ -13,9 +13,6 @@ class AjaxController {
 		$quantity = $request->getParameter('quantity','1');
 		$options = $request->getParameter('options', '-1');
 		$cart = $_SESSION['cart'];
-		/*if(is_string($options) && $options != "-1"){
-			$options = unserialize($options);
-		}*/
 		$cart->addProduct($id, $quantity, $options);
 		echo json_encode(array("sidebar" => $cart->renderSidebar()));
 	}

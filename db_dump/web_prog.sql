@@ -95,7 +95,6 @@ CREATE TABLE `products` (
   `category` varchar(30) NOT NULL,
   `price` double NOT NULL DEFAULT '0',
   `img` varchar(100) NOT NULL,
-  `options` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -106,7 +105,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'pralines',10,'pralinen.jpg',NULL),(2,'pralines',24.5,'pralinen.jpg',NULL),(3,'pralines',33.1,'pralinen.jpg',NULL),(6,'tafeln',12.5,'dunkleSchokolade.jpg','1,2,3'),(7,'tafeln',13.5,'weisseSchokolade.jpg',NULL),(8,'tafeln',13.5,'milchSchokolade.jpg',NULL),(9,'zutaten',1.5,'zucker.jpg',NULL),(10,'zutaten',5.5,'kakao.png',NULL),(11,'zubehoer',49,'mixer.jpg',NULL),(12,'zubehoer',8.1,'gabel.jpg',NULL),(13,'pralines',9.5,'Eierlikoer.jpg',NULL),(14,'pralines',10.5,'Marzipan.jpg',NULL),(15,'pralines',11,'Baileys.jpg',NULL),(16,'pralines',8,'Amarettini.jpg',NULL),(17,'zubehoer',390,'cow.jpg',NULL);
+INSERT INTO `products` VALUES (6,'tafeln',12.5,'dunkleSchokolade.jpg'),(7,'tafeln',13.5,'weisseSchokolade.jpg'),(8,'tafeln',13.5,'milchSchokolade.jpg'),(9,'zutaten',1.5,'zucker.jpg'),(10,'zutaten',5.5,'kakao.png'),(11,'zubehoer',49,'mixer.jpg'),(12,'zubehoer',8.1,'gabel.jpg'),(13,'pralines',9.5,'Eierlikoer.jpg'),(14,'pralines',10.5,'Marzipan.jpg'),(15,'pralines',11,'Baileys.jpg'),(16,'pralines',8,'Amarettini.jpg'),(17,'zubehoer',390,'cow.jpg');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +150,7 @@ CREATE TABLE `users` (
   `name` varchar(32) NOT NULL,
   `pw` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +159,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'test','1234');
+INSERT INTO `users` VALUES (2,'test','$2y$10$9ve/rK19GQxfPSX6MZTdmuk.41qwydQAeHP4wtC0ImcOMXD1a6pBi');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -173,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-12 15:49:09
+-- Dump completed on 2015-01-13 13:01:27

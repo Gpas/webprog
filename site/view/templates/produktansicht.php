@@ -1,19 +1,5 @@
 <?php
-	echo '
-	<script>
-		$(document).ready(function(){
-				$(".order").on("click", function(){
-						$.post("index.php?action=addProduct",
-						$(this).parent().serialize(),
-						function sucess(data){
-							data = JSON.parse(data);
-							$("#warenkorb").html(data.sidebar);
-						}
-					);
-				});
-		});
-	</script>
-	';
+
 	if(isset($product)){
 		echo '<article class="productdetail">
 			<h1>'.$product->getName().'</h1>
@@ -44,3 +30,17 @@
 	}
 
 ?>
+
+<script>
+	$(document).ready(function(){
+			$(".order").on("click", function(){
+					$.post("ajax.php?action=addProduct",
+					$(this).parent().serialize(),
+					function sucess(data){
+						data = JSON.parse(data);
+						$("#warenkorb").html(data.sidebar);
+					}
+				);
+			});
+	});
+</script>
