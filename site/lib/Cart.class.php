@@ -28,7 +28,7 @@ class Cart{
 		$product = array('id' => $Id, 'quantity' => $Quantity, 'options' => $Options);
 		if(count($this->products) > 0){
 			foreach ($this->products as $id => $item){
-				if (($item->getProduct()->getId() == $product['id']) && ($item->getOptions() == $product['options'])) {
+				if (($item->getProduct()->getId() == $product['id']) && ($item->getOptionsAsCompareArray() == $product['options'])) {
 					$this->products[$id]->addAmount($product['quantity']);
 					$duplicate = TRUE;
 				}
@@ -68,6 +68,7 @@ class Cart{
 					<tr>
 						<th>Hinzufügen/Entfernen</th>
 						<th>Name</th>
+						<th>Optionen</th>
 						<th>Preis</th>
 						<th>Anzahl</th>
 						<th>Total</th>
@@ -77,6 +78,15 @@ class Cart{
 		$gesamttotal = 0;
 		if((isset($this->products)) && (count($this->products) > 0)) {
 			foreach ($this->products as $item) {
+				$optionsRender = "";
+				if($item->getOptions() == "-1"){
+					$optionsRender = "Keine Optionen";
+				}
+				else{
+					foreach($item->getOptions() as $option){
+						$optionsRender = $optionsRender . $option->getName() .': '. $option->getValue() .', +'. $option->getPrice() .' CHF<br>';
+					}
+				}
 				$product = $item->getProduct();
 				$total = $item->getTotal();
 				$gesamttotal = $gesamttotal + $total;
@@ -87,6 +97,7 @@ class Cart{
 				<button type="button" class="removeItem pure-button">-</button>
 				</form></td>
 				<td>'.$product->getName(). '  </td>
+				<td>'.$optionsRender.'</td>
 				<td>'.$item->getPrice().' CHF </td>
 				<td>'.$item->getQuantity(). ' </td>
 				<td>'.$total.' CHF </td>' ;
@@ -95,7 +106,7 @@ class Cart{
 			
 			<tfoot>
 			<tr>
-			<td colspan="5"> '.$gesamttotal.' CHF </td>
+			<td colspan="6"> '.$gesamttotal.' CHF </td>
 			</tr>
 			</tfoot>
 			
@@ -111,9 +122,9 @@ class Cart{
 		$out = '<table class="pure-table pure-table-striped" >
 				<thead>
 				<tr>
-					<th>Anzahl</th>
-					<th>Name</th>
-					<th>Total</th>
+					<th>'.$_SESSION['lang']->getText("cart_table_header_count").'</th>
+					<th>'.$_SESSION['lang']->getText("cart_table_header_name").'</th>
+					<th>'.$_SESSION['lang']->getText("cart_table_header_total").'</th>
 				</tr>
 				</thead>
 				<tbody>';

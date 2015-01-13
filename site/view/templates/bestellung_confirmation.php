@@ -1,11 +1,12 @@
 
 <h3>Bestellübersicht</h3>
 <h4>Produkteliste</h4>
-<table class="pure-table pure-table-horizontal" >
+<table class="pure-table pure-table-horizontal pure-table-striped" >
 <thead>
 	<tr>
 		<th>ProdNr</th>
 		<th>Name</th>
+		<th>Optionen</th>
 		<th>Preis</th>
 		<th>Anzahl</th>
 		<th>Total</th>
@@ -16,15 +17,25 @@
 <?php
 
 		$gesamttotal = 0;
-		foreach ($products as $product){
-			$total = $product->getTotal();
+		foreach ($products as $item){
+			$optionsRender = "";
+			if($item->getOptions() == "-1"){
+				$optionsRender = "Keine Optionen";
+			}
+			else{
+				foreach($item->getOptions() as $option){
+					$optionsRender = $optionsRender . $option->getName() .': '. $option->getValue() .', +'. $option->getPrice() .' CHF<br>';
+				}
+			}
+			$total = $item->getTotal();
 			$gesamttotal = $gesamttotal + $total;
 			echo '
 				<tr>
-					<td>'.$product->getProduct()->getId().'</td>
-					<td>'.$product->getProduct()->getName().'</td>
-					<td>'.$product->getPrice().' CHF</td>
-					<td>'.$product->getQuantity().'</td>
+					<td>'.$item->getProduct()->getId().'</td>
+					<td>'.$item->getProduct()->getName().'</td>
+					<td>'.$optionsRender.'</td>
+					<td>'.$item->getPrice().' CHF</td>
+					<td>'.$item->getQuantity().'</td>
 					<td>'.$total.' CHF</td>
 				</tr>
 			';
@@ -35,7 +46,7 @@
 		
 		<tfoot>
 		<tr>
-		<td colspan="5"> '.$gesamttotal.' CHF </td>
+		<td colspan="6"> '.$gesamttotal.' CHF </td>
 		</tr>
 		</tfoot>
 		';
@@ -45,8 +56,8 @@
 
 
 </table>
-<h4>Personenangaben</h4>
-<h5>Lieferadresse</h5>
+<h3>Personenangaben</h3>
+<h4>Lieferadresse</h4>
 <address>
 	<?php
 	echo
@@ -61,7 +72,7 @@
 		';
 
 		echo 'Bemerkung: '.$bemerkung.'<br>
-			<h4>Zahlungsart</h4>
+			<h3>Zahlungsart</h3>
 			'.$zahlungsart.'
 		';
 		
@@ -69,7 +80,7 @@
 
 
 
-<br>
+<br><br>
 <button type="button" id="opener" class="pure-button pure-button-primary">Abschicken </button>
 
 <div id="dialog" title="AGB Zustimmung">

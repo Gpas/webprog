@@ -4,14 +4,14 @@
 					var elem = document.getElementById("warenkorb");
    					elem.parentNode.removeChild(elem);
 					$("#clearCart").on("click", function(){
-							$.post("index.php?action=clearCart",
+							$.post("ajax.php?action=clearCart",
 							function sucess(){
 								location.reload();
 							}
 						);
 					});
 					$("#warenkorb_gross").on("click", ".addItem", function(){
-							$.post("index.php?action=addItem",
+							$.post("ajax.php?action=addItem",
 							$(this).parent().serialize(),
 							function sucess(data){
 								data = JSON.parse(data);
@@ -20,7 +20,7 @@
 						);
 					});
 					$("#warenkorb_gross").on("click", ".removeItem", function(){
-							$.post("index.php?action=removeItem",
+							$.post("ajax.php?action=removeItem",
 							$(this).parent().serialize(),
 							function sucess(data){
 								data = JSON.parse(data);

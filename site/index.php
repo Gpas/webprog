@@ -15,11 +15,14 @@
 	new Cart();
 	
 	// Init language
-	if(isset($_COOKIE['lang'])){
-		new Lang($_COOKIE['lang']);
-	}
-	else{
-		new Lang();
+	if(!isset($_SESSION['lang'])){
+		if(!isset($_COOKIE['lang'])){
+			setcookie("lang", "de", time()+2592000, '/'); // 30 Tage
+			new Lang();
+		}
+		else{
+			new Lang();
+		}
 	}
 		
 

@@ -25,23 +25,44 @@ class item{
 	public function reload(){
 		$this->product = Product::getProductbyId($this->product->getId());
 		$options = Option::getOptionsByProduct($this->product->getId());
-		foreach($options as $option){
-			foreach($this->options as $option_used){
-				if($option->getId() == $option_used->getId()){
-					$selected = $option_used->getSelected();
-					$option->setSelected($selected);
-					$options_temp[]= $option;
+		if(is_array($this->options)){
+			foreach($options as $option){
+				foreach($this->options as $option_used){
+					if($option->getId() == $option_used->getId()){
+						$selected = $option_used->getSelected();
+						$option->setSelected($selected);
+						$options_temp[]= $option;
+					}
 				}
 			}
 		}
+		$this->options = $options_temp;
+		
+		
 	}
 	
 	public function addAmount($amount){
 		$this->quantity = $this->quantity + $amount;
 	}
 	
+	public function getOptionsAsCompareArray(){
+		if((isset($this->options)) && (is_array($this->options))){
+			foreach($this->options as $option){
+				$options[$option->getId()] = $option->getSelected();
+			}
+		}
+				
+		return isset($options) ? $options : -1;
+	}
+	
 	public function getOptions(){
-		return $this->options;
+		if(isset($this->options)){
+			return $this->options;
+		}
+		else{
+			return "-1";
+		}
+		
 	}
 	
 	public function getId(){

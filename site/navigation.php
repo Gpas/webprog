@@ -3,12 +3,12 @@
 			    		if($location == "nav")
 			    		{
 				    		$pages = array(
-				    			'Home',
-				    			'Tafeln',
-				    			'Pralinen',
-				    			'Zutaten',
-				    			'Zubehör',
-				    			'Kontakt'
+				    			$_SESSION['lang']->getText("nav_item_1"),
+				    			$_SESSION['lang']->getText("nav_item_2"),
+				    			$_SESSION['lang']->getText("nav_item_3"),
+				    			$_SESSION['lang']->getText("nav_item_4"),
+				    			$_SESSION['lang']->getText("nav_item_5"),
+				    			$_SESSION['lang']->getText("nav_item_6")
 							);
 							$links= array(
 								'/index.php',
@@ -21,8 +21,8 @@
 						}
 						else if ($location == "aside") {
 							$pages = array(
-				    			'Account',
-				    			'Warenkorb'
+				    			$_SESSION['lang']->getText("nav_item_7"),
+				    			$_SESSION['lang']->getText("nav_item_8")
 							);
 							$links= array(
 								'/index.php?action=account',

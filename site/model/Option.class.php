@@ -58,7 +58,7 @@ class Option {
 	
 	public function getValue(){
 		if(isset($this->selected)){
-			return $values[$this->selected];
+			return $this->values[$this->selected];
 		}
 		else{
 			return 0 ;
@@ -67,7 +67,7 @@ class Option {
 	
 	public function getPrice(){
 		if(isset($this->selected)){
-			return $prices[$this->selected];
+			return $this->prices[$this->selected];
 		}
 		else{
 			return 0 ;

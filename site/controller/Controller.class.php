@@ -53,15 +53,15 @@ class Controller {
 		$sort = $request->getParameter('sort', 'id');
 		$this->data["products"] = Product::getProductsbyCat('tafeln', $sort);
 		$this->title = "Tafeln";
-		
 	}
 	
 	public function produktansicht(Request $request) {
 		$id = $request->getParameter('produkt_id', '0');
 		$this->data["product"] = Product::getProductbyId($id);
-		$this->title = $this->data["product"]->getName();
-		$this->data["options"] = Option::getOptionsByProduct($id);
-		echo var_dump($this->data["options"]);
+		if(isset($this->data['product'])){
+			$this->title = $this->data["product"]->getName();
+			$this->data["options"] = Option::getOptionsByProduct($id);
+		}
 	}
 	
 	public function warenkorb(Request $request) {
@@ -79,9 +79,6 @@ class Controller {
 		$sort = $request->getParameter('sort', 'id');
 		$this->data["products"] = Product::getProductsbyCat('zutaten', $sort);
 		$this->title = "Zutaten";
-			
-		
-		
 	}
 	
 	public function account(Request $request) {
@@ -136,9 +133,9 @@ class Controller {
 		$quantity = $request->getParameter('quantity','1');
 		$options = $request->getParameter('options', '-1');
 		$cart = $_SESSION['cart'];
-		if(is_string($options) && $options != "-1"){
+		/*if(is_string($options) && $options != "-1"){
 			$options = unserialize($options);
-		}
+		}*/
 		$cart->addProduct($id, $quantity, $options);
 		echo json_encode(array("sidebar" => $cart->renderSidebar()));
 		return "noView";

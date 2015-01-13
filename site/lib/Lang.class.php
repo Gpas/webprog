@@ -5,12 +5,9 @@
 		private $content;
 		private $fallback;
 		
-		public function __construct($lang="de"){
-			$this->loadLang($lang);
-			setcookie("lang", $lang, time()+2592000); // 30 Tage
-			if(empty($_SESSION['lang'])) {
-				$_SESSION['lang'] = $this;
-			}
+		public function __construct(){
+			$this->loadLang($_COOKIE['lang']);
+			$_SESSION['lang'] = $this;
 		}
 		
 		public function loadLang($lang){

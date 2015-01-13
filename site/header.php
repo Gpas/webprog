@@ -26,10 +26,15 @@
 		fade: true
 	});
 	$(".langBtn").on("click", function(){
-		$.post(
-			"index.php?action=changeLang&lang=" + $(this).html(),
-			function sucess(){
-				location.reload();
+		date = new Date();
+        date.setTime(date.getTime()+(30*24*60*60*1000)); //30 Tage
+        expires = date.toGMTString();
+        document.cookie="lang="+$(this).html()+"; expires="+expires+"; path=/";
+		$.get(
+			"ajax.php?action=changeLang",
+			function sucess(data){
+				location.reload(true);
+				//$("#warenkorb").html(data)
 			}
 		);
 	});
