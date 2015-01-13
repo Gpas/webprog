@@ -6,7 +6,12 @@
 		private $fallback;
 		
 		public function __construct(){
-			$this->loadLang($_COOKIE['lang']);
+			if(isset($_COOKIE['lang'])){
+				$this->loadLang($_COOKIE['lang']);
+			}
+			else{
+				$this->loadLang('de');
+			}
 			$_SESSION['lang'] = $this;
 		}
 		

@@ -151,7 +151,7 @@ class Cart{
 			</table>';
 		}
 		else{
-			$out = "Keine Produkte im Warenkorb.";
+			$out = $_SESSION['lang']->getText("cart_empty");
 		}
 		return $out;
 	}

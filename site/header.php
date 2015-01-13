@@ -26,10 +26,12 @@
 		fade: true
 	});
 	$(".langBtn").on("click", function(){
-		date = new Date();
-        date.setTime(date.getTime()+(30*24*60*60*1000)); //30 Tage
-        expires = date.toGMTString();
-        document.cookie="lang="+$(this).html()+"; expires="+expires+"; path=/";
+        expires = 30*24*60*60*1000; // 30 Tage
+        date = new Date();
+	    date.setTime(date.getTime()+(30*24*60*60*1000)); //30 Tage
+ 	    expires_date = date.toUTCString();
+        document.cookie="lang="+$(this).html().trim()+";path=/;max-age="+expires+";expires="+expires_date;
+        //$("#warenkorb").html("lang="+$(this).html().trim()+";path=/;max-age="+expires+";expires="+expires_date);
 		$.get(
 			"ajax.php?action=changeLang",
 			function sucess(data){
