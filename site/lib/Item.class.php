@@ -23,7 +23,10 @@ class item{
 	}
 	
 	public function reload(){
-		$this->product = Product::getProductbyId($this->product->getId());
+		$product = Product::getProductbyId($this->product->getId());
+		if(isset($product)){
+			$this->product = $product;
+		}
 		$options = Option::getOptionsByProduct($this->product->getId());
 		if(is_array($this->options)){
 			foreach($options as $option){
